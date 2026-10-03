@@ -1,0 +1,5 @@
+# Upgrade selected components
+
+> Find the local SiliconBoot clone and upgrade `<COMPONENTS_OR_PROFILE>` for its workspace/ project to the latest official versions. Read AGENTS.md, workspace/AGENTS.md, docs/upgrade.md and the current receipts, catalog and recipes. Reuse the installation root recorded in the workspace. Query official releases or documented maintenance branches, record exact sources, and freeze a new resolution. Include affected plugins, tool ABIs, PDK model builds and memory technology dependencies. Build new persistent installations and validate the components and affected workflows. Keep the current generation active until the candidate passes those checks. If the latest versions are incompatible, report blocked_latest_incompatible and retain the working environment. Record any explicitly requested compatible environment separately. Activate a complete candidate atomically under the documented locks, retain the previous generation, and clean up only owned temporary files.
+
+If source discovery is unavailable, report `latest_unknown`. System package changes have separate rollback limits; see [upgrade and recovery](../docs/upgrade.md).

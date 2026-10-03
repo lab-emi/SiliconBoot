@@ -1,0 +1,7 @@
+# Bootstrap a project
+
+> Find the local SiliconBoot clone and read AGENTS.md and docs/bootstrap.md. Create the IC design project in its workspace/ folder, preserving any existing files. Use `<ABSOLUTE_INSTALL_PATH>` as the installation root for all catalogued IC design tools, SRAM compilers and PDKs. Inspect the host, resolve the latest official versions supported natively, and record a fixed installation plan. Follow the recipes to install under that root in persistent versioned locations, with isolated runtimes. Create workspace/tools/, workspace/pdk/, and workspace/bin/ links to a consistent generation. Verify components and requested workflows before activation; report missing, unsupported, unresolved, and incompatible items individually. Generate workspace/AGENTS.md, workspace/project.md, workspace/ENVIRONMENT.md, the portable lock, and local evidence records. Clean up owned temporary installers after verification. Use sudo only within my authorization and the host's approval rules. Native installation is at my own risk.
+
+The default scope is `all`. To narrow it, append a profile or component selection, such as “Use the analog profile with sky130A.”
+
+Expected handoff: active generation or explicit reason it was not activated; exact component and workflow outcomes; current paths; system changes; remaining limitations; and cleanup results. Follow [bootstrap](../docs/bootstrap.md) if any prerequisite is unresolved.

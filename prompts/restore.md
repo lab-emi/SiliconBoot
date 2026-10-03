@@ -1,0 +1,5 @@
+# Restore an exact environment
+
+> Find the local SiliconBoot clone and restore its workspace/ project from workspace/config/environment.lock.md using docs/upgrade.md. Read AGENTS.md and any existing workspace/AGENTS.md. Reuse the recorded installation root; if this host has no recorded root, ask only for the absolute directory where tools, SRAM compilers and PDKs should be installed. Preserve existing files. Resolve the lock's exact provider identities, source revisions, dependency versions, build options and patch records. Check host compatibility and artifact availability; do not replace missing inputs with latest versions. Rebuild into persistent locations, create new local records and links, and validate the recorded workflows before activation. Report every missing, unavailable or host-dependent input and any difference from the lock. Keep the current working generation active when exact restoration or required validation is blocked.
+
+The portable lock identifies inputs. It does not make machine-specific binaries portable or guarantee bit-for-bit rebuilds.

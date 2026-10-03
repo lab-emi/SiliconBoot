@@ -1,0 +1,5 @@
+# Run a design task
+
+> Find the local SiliconBoot clone and read its AGENTS.md and workspace/AGENTS.md. Perform `<DESIGN_TASK>` in the workspace using `<COMPONENT_OR_WORKFLOW>` from the selected generation. Acquire the host-change, project and registry locks in that order to admit the run and record its lease, then release those short admission locks. Resolve that generation to its persistent absolute path during admission and keep its tools, PDKs, interpreter and runtime settings fixed for the whole run. Read the relevant recipe and existing validation evidence. Write generated artifacts, reports and logs into a new directory under workspace/runs/. Preserve user sources and shared installations. Record input hashes, versions, exact invocation and working directory, actual exit status, parsed engineering checks and output locations. Release the lease only when all associated processes finish. Do not upgrade the environment during the task.
+
+An exit status alone cannot establish simulation correctness, timing closure, DRC, LVS, or memory validity. See [validation](../docs/validation.md).
