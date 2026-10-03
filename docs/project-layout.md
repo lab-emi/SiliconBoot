@@ -47,6 +47,9 @@ Use the absolute installation root supplied by the user, as described in [bootst
 | `guides/<guide-revision>/` | Read-only Markdown snapshot of the guidance, catalog, and recipes used by the project. |
 | `tools/<component>/<install-key>/root/` | Complete persistent runtime installation with its upstream layout. |
 | `tools/<component>/<install-key>/receipt.md` | Installation identity, exact sources, dependencies, and evidence. |
+| `runtimes/python/<runtime-key>/root/` | Persistent uv-managed Python distribution and its owned executable directory. |
+| `runtimes/python/<runtime-key>/receipt.md` | Exact interpreter build, provider, asset digest, native ABI and references. |
+| `cache/uv/` | Shared uv dependency cache with recorded ownership; outside routine temporary cleanup. |
 | `pdks/<family>/<install-key>/root/` | Complete PDK family, shared data, and native model products. |
 | `pdks/<family>/<install-key>/receipt.md` | Data, builder, toolchain, model, and patch provenance. |
 | `downloads/<operation-id>/` | Owned temporary downloads. |
@@ -56,6 +59,8 @@ Use the absolute installation root supplied by the user, as described in [bootst
 | `registry.md` | Registered projects, retained generations, installations, and references. |
 
 Runtime source can remain part of a persistent installation. A Python component may need both source and its private interpreter environment; neither is disposable merely because a build has finished. Install at the final prefix and retain required upstream files. An external system installation remains at its provider's location and is recorded as external.
+
+Install uv under `tools/uv/`. Create each uv-managed environment inside its component's final runtime tree, recording its exact path. Derive a Python runtime key from the canonical build identity, including the exact interpreter implementation, version, provider build and asset digest. Register runtime receipts and dependency references using the same locks and leases as tool installations. These runtime dependencies do not add catalog scope records. Follow [Python environments](python-environments.md) to keep downloads, interpreter entrypoints and caches under the selected root.
 
 ## Entrypoints and environment
 

@@ -17,6 +17,8 @@ If discovery is unavailable, record `latest_unknown`; the previous environment c
 
 An existing installation whose identity and checks already match is reused. Repeated upgrade requests without changed inputs should leave the same working environment intact. Ordinary inventory, doctor checks, design runs, and cleanup never initiate upgrades.
 
+For Python changes, follow the [Python environment policy](python-environments.md). Install uv first if missing, then create new environments from frozen inputs. Preserve existing environments, uv binaries and interpreter locations; do not migrate or synchronize an active environment in place. Include a uv change in the plan when requested or required by the selected setup, recording its impact on dependent builds.
+
 ## Restore an exact lock
 
 1. Read the lock's record version and confirm its requested sources, channels, dependencies, build options, command providers, PDK families, and workflow requirements. Use the lock's pinned inputs; do not refresh them to current upstream releases.
@@ -27,6 +29,8 @@ An existing installation whose identity and checks already match is reused. Repe
 6. Activate only the verified result according to the normal transaction. Record whether the evidence supports exact input restoration, matching artifact hashes, and/or the named workflow results. Keep unresolved portions explicit.
 
 An unavailable exact source or dependency blocks the corresponding restore. Do not resolve a newer tag, substitute a fork, change a memory technology port, or omit an input while claiming the original environment was restored. A user-approved alternate environment gets its own lock and explanation. No cross-host or bit-for-bit equivalence is assumed.
+
+Restore the recorded uv version, interpreter build and Python dependency lock before rebuilding its environments. If an older lock predates uv and records another manager, preserve that identity for exact restore and report any missing manager information. Adopting uv requires a separately recorded maintenance change; it must not silently alter the restored inputs.
 
 ## Roll back to a retained generation
 

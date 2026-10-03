@@ -35,6 +35,14 @@ Include every selected entry, even if it has no installed target. Record missing
 | --- | --- | --- | --- | --- | --- |
 | [RESOURCE_ID] | [ABSOLUTE_PATH] | [INTERPRETER_HOST_TOOL_OR_PDK_USE] | [MEMBERS_OR_NONE] | [IDENTITIES] | [EVIDENCE] |
 
+## Python environments
+
+| Component or coupled group | Manager identity and executable | Environment and fixed interpreter paths | Runtime receipt and dependency lock | Setup settings | Upstream runtime exception |
+| --- | --- | --- | --- | --- | --- |
+| [ID_OR_NOT_APPLICABLE] | [UV_RECEIPT_AND_ABSOLUTE_PATH_OR_RECORDED_MANAGER] | [ABSOLUTE_PATHS] | [RECEIPT_LOCK_REFERENCE_AND_DIGEST] | [UV_STORAGE_AND_ENVIRONMENT_SETTINGS] | [REASON_AND_EVIDENCE_OR_NONE] |
+
+Keep uv, interpreters and package inputs in the dependency references protected by this generation. Record any required uv-based run invocation in the entrypoint map with synchronization, lock updates and downloads disabled.
+
 ## Generation checks and limits
 
 - Link, target, permission, and cycle checks: [EVIDENCE].

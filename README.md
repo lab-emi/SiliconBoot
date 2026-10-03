@@ -5,7 +5,7 @@
 
 Open the cloned SiliconBoot repository in a coding agent with file, network, and terminal access. Replace `<ABSOLUTE_INSTALL_PATH>` with the directory where you want all IC design tools, SRAM compilers, and PDKs installed, then paste this prompt:
 
-> Find the local SiliconBoot clone and read its AGENTS.md. Create an IC design project in a folder named workspace inside the repository. Use `<ABSOLUTE_INSTALL_PATH>` as the installation root for all IC design tools, SRAM compilers and PDKs. Install the latest official versions supported natively on this host, following the catalog, recipes and lifecycle procedures. Link installations into workspace/tools/ and workspace/pdk/, and executable entrypoints into workspace/bin/. Verify components and supported workflows, record exact versions and sources, and generate workspace/AGENTS.md and workspace/ENVIRONMENT.md. Preserve existing files, report unsupported components and compatibility failures, and clean up owned temporary installers after verification. Use sudo only within my authorization and the host's approval rules. I understand this changes my machine. Use at your own risk.
+> Find the local SiliconBoot clone and read its AGENTS.md. Create an IC design project in a folder named workspace inside the repository. Use `<ABSOLUTE_INSTALL_PATH>` as the installation root for all IC design tools, SRAM compilers and PDKs. Use uv to manage Python environments; if uv is missing, install it first from its official source. Install the latest official versions supported natively on this host, following the catalog, recipes and lifecycle procedures. Link installations into workspace/tools/ and workspace/pdk/, and executable entrypoints into workspace/bin/. Verify components and supported workflows, record exact versions and sources, and generate workspace/AGENTS.md and workspace/ENVIRONMENT.md. Preserve existing files, report unsupported components and compatibility failures, and clean up owned temporary installers after verification. Use sudo only within my authorization and the host's approval rules. I understand this changes my machine. Use at your own risk.
 
 The installation root is the only path you need to provide. The agent discovers the repository location and uses its `workspace/` folder for the IC project.
 
@@ -15,7 +15,7 @@ The installation root is the only path you need to provide. The agent discovers 
 
 SiliconBoot is a set of prompts, a component catalog, installation recipes, and project record templates. Your agent performs the work using the selected tools' official instructions. There is no SiliconBoot executable, installer, service, agent SDK, or plugin dependency. A chat-only agent can explain the process but cannot install anything.
 
-The default scope is the complete [catalog](catalog/README.md). Ask for the `analog`, `digital`, `memory`, `fpga`, or `rf` [profile](catalog/profiles.md), or name components and PDKs to narrow it. Planned and unresolved entries must appear in the result, even when they cannot be installed.
+The default scope is the `all` [profile](catalog/profiles.md), including uv as the default Python environment manager; JupyterLab remains optional. Ask for the `analog`, `digital`, `memory`, `fpga`, or `rf` profile, or name components and PDKs to narrow it. Planned and unresolved entries must appear in the result, even when they cannot be installed. See [Python environments](docs/python-environments.md) for isolation, interpreter selection, and upstream runtime exceptions.
 
 ## Platform status
 

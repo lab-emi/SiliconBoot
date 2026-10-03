@@ -14,6 +14,8 @@ Routine cleanup removes temporary files owned by the completed operation. It doe
 
 Do not delete runtime source, language environments, PDK technology data, shared family resources, model binaries, active installations, previous generations, user design data, verification inputs, accepted memory macros, run artifacts, or third-party files. Do not recursively sweep a broad store, home, project, or system directory.
 
+uv-managed Python installations are persistent runtime dependencies. Retain their exact directories and executable targets while any environment, retained generation or lease references them. Treat the store's shared `cache/uv` under the shared-cache rule below; a successfully created environment does not authorize a cache sweep.
+
 Failed builds may retain diagnostic working directories. List their measured size, owner operation, and resume value. A later explicit cleanup can remove those temporary files once no active operation uses them; keep the failure logs and record that rebuilding will be required. Unknown ownership remains a blocker to deletion.
 
 System package caches, shared package-manager caches, installed system packages, and external providers are outside routine cleanup. Changing them requires a separate user request with its own scope.

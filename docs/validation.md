@@ -45,6 +45,8 @@ Before activation, inspect every exported entrypoint and installation link. Dete
 
 Repeat a representative component check in a fresh shell and a different working directory, using only the documented environment. Do not inherit the build session's PATH, library paths or active language environment. Confirm GUI resources when GUI readiness is claimed. Verify all PDK internal links, shared files, selected device models, standard-cell views and required corners.
 
+For Python components, check the recorded uv identity, environment path, actual interpreter build and provider, imported package locations, and native binding compatibility. Confirm that each environment matches its frozen dependencies and that normal tool invocation leaves the environment and lock unchanged. Verify upstream-managed runtime exceptions through their actual host tool. Include the uv prerequisite's environment creation and recreation evidence from its [recipe](../recipes/uv/README.md).
+
 After removing owned temporary files, repeat startup and the relevant functional check to detect accidental dependence on cleaned source or build files. Keep installed runtime source when upstream needs it.
 
 ## Results and activation

@@ -29,6 +29,14 @@ This record contains portable exact input identities. Host paths, local username
 | --- | --- | --- | --- | --- | --- |
 | [ID_OR_NOT_APPLICABLE] | [IDENTITIES] | [IDENTITIES] | [EXACT_PORT_OR_NOT_APPLICABLE] | [SELECTIONS] | [INPUTS] |
 
+## Python environment inputs
+
+| Component or coupled group | Manager version and source identity | Interpreter implementation/version/build/provider and asset digest | Dependency lock or resolved requirements identity | Extras, indexes and build dependencies | Upstream runtime exception |
+| --- | --- | --- | --- | --- | --- |
+| [ID_OR_NOT_APPLICABLE] | [UV_IDENTITY_OR_RECORDED_MANAGER] | [EXACT_INPUTS] | [RETRIEVABLE_SOURCE_OR_PORTABLE_ASSET_REFERENCE_AND_DIGEST] | [EXACT_CHOICES] | [REASON_AND_OFFICIAL_EVIDENCE_OR_NONE] |
+
+Preserve the dependency resolution asset needed to recreate each environment. Keep local interpreter paths in the manifest and receipts. Restore these inputs exactly; an older lock using a different manager requires a separate maintenance change to adopt uv.
+
 ## Entrypoint and workflow policy
 
 | Public command | Selected component/provider | Namespaced alternative |

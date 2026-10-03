@@ -36,6 +36,8 @@ Guidance and catalog revision: [REVISION_AND_DIGEST]
 
 Record transitive sources and submodules, PDK source data separately from builder and model revisions, memory technology ports, and upstream-provided patch inputs. Explain any cycle and its documented staged resolution. Document provider or channel exceptions, unpinned dependencies, planned system changes, resource limits, and their authorization references.
 
+Include uv as the default setup dependency and place its installation before Python setup when missing. Record the exact manager, interpreter builds, package resolutions, persistent environment destinations and any documented upstream runtime exceptions. If dependency resolution needs an installed uv/interpreter prerequisite, reference its frozen plan and receipts before freezing the dependent environment inputs.
+
 ## Acceptance and resumption
 
 - Required component checks: [CHECKS_AND_RECIPE_REFERENCES].

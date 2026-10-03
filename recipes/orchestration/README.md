@@ -2,6 +2,8 @@
 
 Follow the [common recipe](../README.md) and official [catalog](../../catalog/README.md) entries. An orchestration framework and its backends are separate installed components; importing the framework does not prove a backend workflow works.
 
+Use [uv](../uv/README.md) for the Python environments below, installing it first if missing. Follow the [Python environment policy](../../docs/python-environments.md) for isolation, exact dependencies and native bindings.
+
 ## Installation decisions and checks
 
 | Component | Installation decision | Functional acceptance |
@@ -20,9 +22,9 @@ For [SiliconCompiler](https://github.com/siliconcompiler/siliconcompiler), inspe
 
 ## Optional support tools
 
-If the `support` profile is requested, resolve its exact members from their official sources. Install general package managers or notebook environments only for the stated role, with separate receipts and isolated dependencies. Verify the requested support capability without treating it as an EDA workflow. Notebook servers must follow the user's chosen exposure and authentication settings; do not start a persistent public service during setup.
+If the `support` profile is requested, add JupyterLab from its official source in its own uv-managed environment. uv is already a default setup dependency for every profile. Verify the requested support capability without treating it as an EDA workflow. Notebook servers must follow the user's chosen exposure and authentication settings; do not start a persistent public service during setup.
 
-For JupyterLab, open a temporary local session using the selected interpreter kernel, run an upstream introductory notebook, confirm the kernel's actual environment, and shut the session down after the check. For uv, create an isolated temporary environment from a small maintainer-documented example, inspect the chosen interpreter and dependency lock, and confirm it can be recreated. Preserve any uv-managed interpreter used by an installed component; a package manager's cache can contain referenced runtime inputs.
+For JupyterLab, open a temporary local session using the selected interpreter kernel, run an upstream introductory notebook, confirm the kernel's actual environment, and shut the session down after the check. Keep each kernel associated with its intended IC environment; retain its interpreter and dependencies according to the normal lifecycle rules.
 
 ## Activation and cleanup
 

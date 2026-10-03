@@ -15,6 +15,7 @@ SiliconBoot has two distinct acceptance activities: reviewing this documentation
 - [ ] Local links resolve. Recipe paths and component names agree with the catalog and templates.
 - [ ] Latest stable, source snapshots, prereleases, forks and published PDK snapshots are distinguished. Network failure cannot become a latest-version claim.
 - [ ] Lifecycle docs cover native inspection, permissions, fixed resolution, dependency order, isolation, resume, locking, activation, portable restore, rollback, cleanup and explicit garbage collection.
+- [ ] uv is the default Python environment manager in prompts, profiles, recipes and project templates. Missing uv is installed first during setup; planning and ordinary runs do not install it implicitly. Interpreter locations, exact dependency records and upstream runtime exceptions are explicit.
 - [ ] Records distinguish component state, latest discovery, engineering check outcomes, and overall completeness. Unknown, failed and skipped results cannot be mistaken for success.
 - [ ] Templates contain all mandatory record fields and explain placeholders. Local absolute paths and portable reproduction inputs have distinct homes.
 - [ ] No support claim exceeds actual evidence. Published platform status states what has and has not been run.
@@ -35,7 +36,13 @@ These are prose acceptance cases for an agent on an authorized test host. Create
 | Bad links | Dangling/cyclic links and links to unexpected third-party roots | Reject activation or the affected entrypoint; retain existing files and evidence |
 | Name collision | Two providers export the same public name | Record a chosen default and distinct namespaced entries; never silently overwrite |
 | Native identity | Wrong-architecture asset or translated execution | Reject it as native support for the selected host; report actual context |
-| Isolation | Two Python components require conflicting dependencies | Separate environments and interpreter paths; system runtime and the other component still work |
+| Missing uv | Authorized setup with no uv on the host | Install and verify the official native uv distribution under the chosen root before Python environments or packages; record sources and version |
+| Existing uv | A uv executable is present before setup | Inspect identity, version, provider and native architecture; reuse only when lifecycle requirements match, preserving existing files |
+| Python bootstrap failure | uv unavailable for the native host or acquisition fails | Block affected Python setup with evidence; continue independent components without silently changing managers |
+| Isolation | Two Python components require conflicting dependencies | Separate uv-managed environments and fixed interpreter paths; system runtime and the other component still work |
+| Python compatibility | Host Python conflicts with an EDA extension's ABI | Select and record a compatible native interpreter under the root, or report the unsatisfied requirement |
+| Upstream Python runtime | A host tool embeds Python or requires a managed dependency closure | Preserve the supported runtime and record an evidence-based exception to uv management |
+| Fixed Python run | Ordinary invocation in a verified generation | Use its exact environment without uv synchronization, dependency resolution, lock changes or downloads |
 | Clean session | New shell, different working directory, no build-session variables | Tools start and complete the relevant example using documented settings |
 | Interrupted build | Operation ends after download or during build | Record unfinished state; no broken successful entrypoints; resume rechecks inputs and ownership |
 | Concurrent work | Two agents attempt the same installation or activation | Native locking serializes mutation; neither sees an incomplete installation as reusable |
@@ -47,6 +54,7 @@ These are prose acceptance cases for an agent on an authorized test host. Create
 | Long-running job | Upgrade or rollback while a run is active | Job retains its original absolute paths and lease; future jobs use the newly selected generation |
 | Shared installations | Two projects reference one install; one upgrades | Both projects retain valid versions and links; no referenced install is removed |
 | Temporary cleanup | A runtime source tree is adjacent to build residue and a user symlink | Delete only owned temporary data, preserve runtime and third-party targets, recheck startup |
+| Python retention | Several environments reference one uv-managed interpreter | Preserve the interpreter and all live environment references during cleanup and collection; handle shared caches separately |
 | Garbage collection | Unregistered/unknown projects, retained generations, dependencies or uncertain leases | Retain anything whose lack of references cannot be established; honor dry-run vs explicit removal scope |
 | Exact restore | Lock references an unavailable source, dependency or patch | Block exact restore with precise missing inputs; no silent latest substitution |
 | Rollback | Retained generation with changed system dependency | Validate before selection; report system rollback limitations and keep working state if invalid |

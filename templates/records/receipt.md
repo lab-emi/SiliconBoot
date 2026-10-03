@@ -37,6 +37,11 @@ Verified at: [UTC_TIME_OR_NOT_VERIFIED]
 | --- | --- |
 | Native OS/release and CPU/process architecture | [PLATFORM] |
 | Compiler/toolchain and isolated runtime | [VERSIONS_AND_PATHS] |
+| Python environment manager | [UV_VERSION_SOURCE_AND_RECEIPT_OR_UPSTREAM_EXCEPTION_OR_NOT_APPLICABLE] |
+| Python interpreter identity and provider | [IMPLEMENTATION_VERSION_BUILD_ABI_ASSET_DIGEST_AND_RECEIPT_OR_NOT_APPLICABLE] |
+| Python environment and fixed interpreter paths | [PERSISTENT_ABSOLUTE_PATHS_OR_NOT_APPLICABLE] |
+| Python dependency resolution | [LOCK_OR_REQUIREMENTS_ASSET_SOURCE_DIGEST_EXTRAS_INDEXES_AND_BUILD_INPUTS_OR_NOT_APPLICABLE] |
+| Python setup settings and runtime exception | [UV_STORAGE_AND_ENVIRONMENT_SETTINGS_EXCEPTION_EVIDENCE_OR_NOT_APPLICABLE] |
 | Final persistent prefix | [ABSOLUTE_PATH] |
 | Normalized installation-identity fields and digest | [INPUTS_AND_DIGEST] |
 | Build options | [EXACT_CHOICES] |

@@ -18,7 +18,7 @@ Source review date: **2026-10-03**. Repository moves and observed default branch
 - [Orchestration and libraries](orchestration.md)
 - [PDK infrastructure and process data](pdks.md)
 - [Memory compilers](memory.md)
-- [Optional support tools](support.md)
+- [Python environment manager and optional support](support.md)
 - [Profiles and unresolved scope](profiles.md)
 
 Each component subsection is one record. Its heading starts with its unique canonical ID. Fields in that record override the inherited defaults below. A name, package name, repository name and installed command can differ; none is a substitute for the others. Dependencies describe the integration that needs review, not a complete, executable package dependency graph.
@@ -40,6 +40,7 @@ Each component subsection is one record. Its heading starts with its unique cano
 | support_level | Experimental for resolved entries with a documented procedure; native execution remains unverified. Planned applies when identity, scope or procedure is unresolved. Verified requires recorded native component and workflow evidence; no record currently claims it. Unsupported applies to a specific incompatible platform or workflow, not merely missing tests. |
 | providers | Candidate upstream source build. Upstream binary/package providers are eligible only after documentation establishes their identity, selected revision and native host compatibility. System package reuse must be recorded as external, with exact version and owner. |
 | dependencies | Component IDs and system/runtime requirements named in the record. Complete the version-specific list before installation; an absent dependency is unknown, not proof that none exists. |
+| python_environment_manager | uv by default, bootstrapped before Python setup if missing. Use isolated environments and compatible interpreters under the [Python environment policy](../docs/python-environments.md); document any upstream runtime exception. |
 | abi_constraints | Native OS/architecture, compiler, C/C++ libraries and interpreter ABI must match. Plugins additionally match the exact host-tool API; model plugins match simulator and model-compiler ABI. |
 | coupled_group | None declared unless noted. Absence does not waive dependency compatibility checks. |
 | recipe | Linked Markdown guidance in recipes. Shared recipes cover several components and require reviewing each component's own upstream instructions. |

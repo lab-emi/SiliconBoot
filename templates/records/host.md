@@ -19,6 +19,8 @@ Observed at: [UTC_TIME]
 | Free disk and memory | [MEASUREMENTS_AND_TIME] |
 | Build concurrency limit | [LIMIT_AND_REASON] |
 | Native compilers and runtimes | [VERSIONS_AND_PROVIDERS] |
+| uv discovery | [ABSOLUTE_PATH_VERSION_PROVIDER_AND_NATIVE_ARCHITECTURE_OR_MISSING] |
+| Python setup prerequisite | [UV_REUSE_OR_OFFICIAL_INSTALL_PLAN_AND_INTERPRETER_REQUIREMENTS] |
 | System package manager | [PROVIDER_AND_STATE_REFERENCE] |
 | GUI/display availability | [OBSERVATION_AND_LIMITATIONS] |
 | Network or source-access limits | [LIMITATIONS_OR_NONE] |

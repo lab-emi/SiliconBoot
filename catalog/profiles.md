@@ -2,17 +2,19 @@
 
 Profiles describe a selection to review. They do not certify a compatible environment or an installed workflow. Apply the [catalog defaults](README.md) and the linked recipes, resolve exact dependency versions, and report every selected component's status.
 
+Include uv as a default setup dependency in every profile and custom component selection. Install it first when missing, before Python environment or package setup. An explicit user choice can override this default; record the choice and affected scope. Upstream runtime exceptions follow the [Python environment policy](../docs/python-environments.md).
+
 ## Selections
 
 | Profile | Selected records | Selection notes |
 | --- | --- | --- |
-| all | Every record in all category pages except support: 134 unique IDs | Includes named extensions, PDK families and memory compilers. Report the unresolved PULP umbrella explicitly and review its identified constituents individually. Experimental or planned entries must remain visible. |
+| all | Every category record except optional JupyterLab: 135 unique IDs, including uv | Includes named extensions, PDK families and memory compilers. Report the unresolved PULP umbrella explicitly and review its identified constituents individually. Experimental or planned entries must remain visible. |
 | analog | All analog and layout records; PDK infrastructure and each requested process variant | Review simulator/model ABI, schematic-to-simulation and layout verification as separate capabilities. |
 | digital | All HDL, verification, formal, implementation, SoC and orchestration records; KLayout, Magic, Netgen; PDK infrastructure and requested process variants | FPGA architecture tools remain in fpga unless requested. Select solver and language backends explicitly; no latest-version compatibility is presumed. |
 | memory | OpenRAM and DFFRAM; their documented compiler/technology/tool dependencies | Select each compiler's supported PDK port independently. A source PDK or pre-generated macro does not establish a compiler port. |
 | fpga | All FPGA records; Yosys, ABC and the HDL/simulation frontend needed by the design | iCE40 and ECP5 have separate device databases and validation results. Hardware programming requires a separate requested design action. |
 | rf | All RF records; Qucs-S, ngspice, Xyce, VacasK, OpenVAF-ReLoaded and the selected layout/PDK dependencies | Record solver, mesh, material stack, model and port definitions. A solver executable does not prove a process-specific EM flow. |
-| support | JupyterLab and uv | Optional; excluded from all and the domain profiles unless explicitly requested. |
+| support | JupyterLab, plus the default uv dependency | Optional notebook capability; JupyterLab is excluded from all and the domain profiles unless explicitly requested. |
 
 A profile's dependencies are reviewed recursively and deduplicated by canonical ID. System libraries, runtime package dependencies and upstream submodules are recorded with their parent component. Shared-source capabilities such as nextpnr architecture builds and Qflow conversion tools retain separate capability records while sharing their actual source/install identity.
 
@@ -32,7 +34,7 @@ A profile's dependencies are reviewed recursively and deduplicated by canonical 
 | [Orchestration and libraries](orchestration.md) | 7 |
 | [PDK infrastructure and process data](pdks.md) | 6 |
 | [Memory compilers](memory.md) | 2 |
-| [Optional support](support.md) | 2 |
+| [Python environment manager and optional support](support.md) | 2 |
 | Total | 136 |
 
 The total includes the PULP umbrella scope record. It does not count unnamed extensions, aliases, bundled system libraries or pre-generated memory macros as separate components. There are no verified native installations or workflows in these counts.

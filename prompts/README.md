@@ -19,4 +19,6 @@ For setup, replace only `<ABSOLUTE_INSTALL_PATH>` with the absolute directory wh
 
 Default installation scope is `all`. Optional scope phrases include “Use the analog profile with sky130A,” “Set up only Yosys and Verilator,” and “Plan memory compilation for this PDK and report supported compiler ports.” Profiles select components, not permission to substitute versions or deployment environments.
 
+Use uv by default for Python environments in every selection, installing and verifying it first during setup if missing. Planning records this prerequisite without executing it. Ordinary runs use the recorded environments; exact restore preserves locked manager and interpreter identities. Follow [Python environments](../docs/python-environments.md).
+
 If continuing an interrupted operation, supply the operation ID. Ask the agent to inspect its frozen resolution and state, recheck completed work, and resume only missing or invalidated steps. A fresh latest-version resolution must be recorded as a new operation.

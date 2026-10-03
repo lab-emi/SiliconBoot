@@ -36,6 +36,18 @@ This document describes environment setup in prose. Apply the values through the
 
 Keep invocations as task-specific native process actions performed by the agent; do not turn this table into shell code or a launcher. Libraries and plugins without an upstream public CLI have no project binary entry.
 
+## Python environments
+
+Use uv for Python setup and maintenance, installing it first if missing according to the [uv recipe]([GUIDE_ABSOLUTE_PATH]/recipes/uv/README.md). Follow the [Python environment policy]([GUIDE_ABSOLUTE_PATH]/docs/python-environments.md) for exact inputs and upstream runtime exceptions. Populate this table from the manifest and receipts; use `not applicable` with a reason for components without Python.
+
+| Component or coupled group | Manager version and executable | Environment path | Exact interpreter, provider and receipt | Dependency lock and digest | Upstream runtime exception |
+| --- | --- | --- | --- | --- | --- |
+| [COMPONENT_OR_GROUP] | [UV_VERSION_AND_ABSOLUTE_PATH_OR_RECORDED_MANAGER] | [ENVIRONMENT_ABSOLUTE_PATH] | [PYTHON_IDENTITY_PATH_AND_RECEIPT] | [LOCK_REFERENCE_AND_DIGEST] | [REASON_AND_OFFICIAL_EVIDENCE_OR_NONE] |
+
+For setup operations, record each runtime's concrete `UV_PYTHON_INSTALL_DIR` and `UV_PYTHON_BIN_DIR`, the store's `UV_CACHE_DIR`, and `UV_PROJECT_ENVIRONMENT` when an upstream uv project requires it: [PER_COMPONENT_SETTINGS_AND_EVIDENCE]. Keep these settings scoped to the intended operation and environment.
+
+For design runs, use the table's verified upstream entrypoint or fixed interpreter directly. If the workflow requires `uv run`, use only its recorded invocation that disables synchronization, lock updates and downloads. Do not resolve new packages or create a replacement environment implicitly. Missing dependencies require a maintenance operation.
+
 ## Environment checks and recovery
 
 Fresh-process check: [OUTCOME_AND_EVIDENCE].\
