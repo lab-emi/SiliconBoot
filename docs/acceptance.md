@@ -5,9 +5,9 @@ SiliconBoot has two distinct acceptance activities: reviewing this documentation
 ## Documentation review
 
 - [ ] The README starts with the project name, taglines, a usable setup prompt, and the native-installation risk notice.
-- [ ] Setup asks for only the absolute installation root. The agent discovers the clone, derives its `workspace/` project, and reuses the recorded root for maintenance.
+- [ ] Setup asks for only the absolute installation root. The agent discovers the clone, initializes its existing `workspace/` project, and reuses the recorded root for maintenance. A fresh clone contains the empty tracked `.gitkeep`; all other workspace contents and `workspace2/` are ignored.
 - [ ] Root and project AGENTS guides direct a new agent to real files and explicit operations.
-- [ ] Every file added to the repository is documentation or license metadata. There is no executable helper, script, code example, generated design source, or activation program.
+- [ ] Every file added to the repository is documentation, license metadata, Git ignore rules, or the empty `workspace/.gitkeep`. There is no executable helper, script, code example, generated design source, or activation program.
 - [ ] All prose and commit messages are English. Sources come from component maintainers and their documented providers.
 - [ ] Every named catalog component has a unique ID, explicit identity or unresolved status, source policy, recipe route, and functional acceptance requirement.
 - [ ] Catalog inheritance is explicit. Platforms, providers, dependencies, coupling, entrypoints, runtime layout, license/status evidence, allowed download sources and cleanup rules can be resolved without inventing facts.
@@ -18,6 +18,7 @@ SiliconBoot has two distinct acceptance activities: reviewing this documentation
 - [ ] uv is the default Python environment manager in prompts, profiles, recipes and project templates. Missing uv is installed first during setup; planning and ordinary runs do not install it implicitly. Interpreter locations, exact dependency records and upstream runtime exceptions are explicit.
 - [ ] Records distinguish component state, latest discovery, engineering check outcomes, and overall completeness. Unknown, failed and skipped results cannot be mistaken for success.
 - [ ] Templates contain all mandatory record fields and explain placeholders. Local absolute paths and portable reproduction inputs have distinct homes.
+- [ ] AppImage guidance places temporary mountpoints in a private project run directory, verifies the canonical path against host policy, records TMPDIR, and checks for remaining mounts before cleanup.
 - [ ] No support claim exceeds actual evidence. Published platform status states what has and has not been run.
 
 ## Native execution scenarios
@@ -26,7 +27,8 @@ These are prose acceptance cases for an agent on an authorized test host. Create
 
 | Scenario | Exercise | Required outcome |
 | --- | --- | --- |
-| Single-path setup | Supply only an absolute installation root while the clone is open | Discover the clone, create or preserve its `workspace/`, and place managed tools, SRAM compilers, and PDKs under the supplied root |
+| Single-path setup | Supply only an absolute installation root while the clone is open | Discover the clone, initialize or preserve its existing `workspace/`, and place managed tools, SRAM compilers, and PDKs under the supplied root |
+| Fresh clone and Git exclusions | Check a fresh clone, then add representative visible, hidden and nested workspace files plus a workspace2 file | The empty `workspace/.gitkeep` exists and is the only tracked workspace path; every generated file and workspace2 file is ignored and absent from the staged set |
 | Release selection | Official stable release beside draft/prerelease and non-release tags | Select the upstream-defined stable release; record why other entries were excluded |
 | Source snapshot | Upstream recommends a branch other than the repository default | Use the documented branch and full immutable revision |
 | Discovery failure | Network unavailable or official API rate-limited | Report `latest_unknown`; preserve working installs and avoid claiming freshness |
@@ -44,6 +46,7 @@ These are prose acceptance cases for an agent on an authorized test host. Create
 | Upstream Python runtime | A host tool embeds Python or requires a managed dependency closure | Preserve the supported runtime and record an evidence-based exception to uv management |
 | Fixed Python run | Ordinary invocation in a verified generation | Use its exact environment without uv synchronization, dependency resolution, lock changes or downloads |
 | Clean session | New shell, different working directory, no build-session variables | Tools start and complete the relevant example using documented settings |
+| AppImage mountpoint policy | On a host that restricts FUSE mountpoints, inspect a denied store-path launch and retry the same AppImage with a permitted `workspace/runs/<run-id>/tmp` | Record the canonical TMPDIR and actual policy evidence; verify startup and an affected function without changing installed bytes or weakening policy; if the project path is also denied, report that blocker |
 | Interrupted build | Operation ends after download or during build | Record unfinished state; no broken successful entrypoints; resume rechecks inputs and ownership |
 | Concurrent work | Two agents attempt the same installation or activation | Native locking serializes mutation; neither sees an incomplete installation as reusable |
 | Candidate versus collection | Garbage collection overlaps a build or candidate validation | An operation lease protects new installations, reused inputs and dependencies until durable generation references replace it |
@@ -54,6 +57,7 @@ These are prose acceptance cases for an agent on an authorized test host. Create
 | Long-running job | Upgrade or rollback while a run is active | Job retains its original absolute paths and lease; future jobs use the newly selected generation |
 | Shared installations | Two projects reference one install; one upgrades | Both projects retain valid versions and links; no referenced install is removed |
 | Temporary cleanup | A runtime source tree is adjacent to build residue and a user symlink | Delete only owned temporary data, preserve runtime and third-party targets, recheck startup |
+| Mounted temporary directory | Cleanup encounters an active or unresolved AppImage mount beneath a run's tmp directory | Preserve the directory until all owning processes and mounts finish; retain reports and artifacts after exact owned cleanup |
 | Python retention | Several environments reference one uv-managed interpreter | Preserve the interpreter and all live environment references during cleanup and collection; handle shared caches separately |
 | Garbage collection | Unregistered/unknown projects, retained generations, dependencies or uncertain leases | Retain anything whose lack of references cannot be established; honor dry-run vs explicit removal scope |
 | Exact restore | Lock references an unavailable source, dependency or patch | Block exact restore with precise missing inputs; no silent latest substitution |

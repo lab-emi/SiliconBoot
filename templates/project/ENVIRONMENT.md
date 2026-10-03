@@ -28,6 +28,12 @@ This document describes environment setup in prose. Apply the values through the
 | PDK variant, when required | [PDK_VARIANT_OR_NOT_APPLICABLE] | [RECIPES_REQUIRING_IT] | [CHECK_REFERENCE] |
 | Other verified variable | [NAME_AND_VALUE_OR_NONE] | [COMPONENT] | [CHECK_REFERENCE] |
 
+## AppImage temporary directory
+
+For LibreLane AppImage, create a private `tmp` directory inside the new run under [PROJECT_ABSOLUTE_PATH]/runs. Set `TMPDIR` to its canonical absolute path for that process and its children, and record the concrete path in the run record. Verify that the host's FUSE mount policy permits the real location. On restricted AppArmor hosts, a home-directory workspace may be allowed while `/eda/work` is denied. Keep the executable under the persistent store and diagnose mountpoint denials before changing the installed provider or capability claims.
+
+Follow [temporary mount guidance]([GUIDE_ABSOLUTE_PATH]/docs/project-layout.md#appimage-temporary-mounts). Wait for every child process and mount to finish before removing the owned temporary directory. If AppImage is not selected, record this setting as not applicable in the per-tool map.
+
 ## Per-tool use
 
 | Component | Upstream entrypoint or library/host tool | Interpreter | Required environment | Working directory | Runtime resource path | Known limits |

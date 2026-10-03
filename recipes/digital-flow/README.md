@@ -23,6 +23,14 @@ Install complete upstream runtime directories and preserve Python environments o
 
 Choose an official small flow example whose PDK and standard-cell library are actually installed. Retain its upstream RTL and flow configuration in a project run area with source provenance; this repository supplies no RTL, configuration code or flow scripts. Confirm clock constraints, target period, corners, routing layers, library views and output locations before running.
 
+### LibreLane AppImage mountpoints
+
+Follow the official [Linux AppImage installation guide](https://librelane.readthedocs.io/en/latest/installation/appimage_installation/installation_linux.html) and [AppImage FUSE troubleshooting](https://docs.appimage.org/user-guide/troubleshooting/fuse.html). Keep the official executable in its persistent installation and use its upstream entrypoint with the bundled dependency closure.
+
+Set `TMPDIR` to the canonical path of a private `workspace/runs/<run-id>/tmp` directory, following [temporary mount guidance](../../docs/project-layout.md#appimage-temporary-mounts). Verify the host permits a FUSE mount at that location. An AppArmor `fusermount3` denial reporting `failed mntpnt match` identifies a mountpoint restriction; inspect it before treating the failure as a missing FUSE dependency. In particular, `/eda/work` being writable does not make it an allowed mountpoint.
+
+Record the effective `TMPDIR` and verify startup plus an affected functional step from a fresh process using the unchanged AppImage. Keep its runtime settings scoped to that process. Release the temporary directory only after all child processes and FUSE mounts finish. This rule applies during initial verification, design runs, and post-cleanup checks.
+
 ## Acceptance gates
 
 1. Check each tool's identity, version and startup independently. If standalone OpenSTA is selected, run an upstream timing example and inspect a real path report.

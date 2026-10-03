@@ -5,3 +5,5 @@
 An exit status alone cannot establish simulation correctness, timing closure, DRC, LVS, or memory validity. See [validation](../docs/validation.md).
 
 For Python, use the recorded entrypoint or fixed interpreter. If upstream requires uv to launch the workflow, follow the verified settings that disable synchronization, lock updates and downloads. Missing dependencies require a separate maintenance operation; see [Python environments](../docs/python-environments.md).
+
+For LibreLane AppImage, create this run's private `workspace/runs/<run-id>/tmp`, verify its canonical path against the host FUSE mount policy, and scope `TMPDIR` to that path. Keep it until all processes and mounts finish; follow [temporary mount guidance](../docs/project-layout.md#appimage-temporary-mounts). Do not infer mount permission from a writable store directory such as `/eda/work`.

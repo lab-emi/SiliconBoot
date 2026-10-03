@@ -1,6 +1,6 @@
 # Project and persistent-store layout
 
-The IC design project lives in `workspace/` directly under the cloned SiliconBoot repository. The agent discovers the clone's location and derives this project path. The user supplies only the absolute installation root for tools, SRAM compilers, and PDKs, called the store in these documents.
+The IC design project lives in `workspace/` directly under the cloned SiliconBoot repository. Its tracked empty `.gitkeep` makes the directory available immediately after cloning. The agent discovers the clone's location and derives this project path. The user supplies only the absolute installation root for tools, SRAM compilers, and PDKs, called the store in these documents.
 
 The generated project contains Markdown guidance and records, directories, and native symbolic links. SiliconBoot does not generate activation scripts, wrappers, installer code, or design-source examples. The user's design work may later add its own source files inside the local workspace. Render the [templates](../templates/README.md) with the derived project path and chosen installation root.
 
@@ -10,6 +10,7 @@ Every location in this table is relative to the clone's `workspace/` directory. 
 
 | Location | Purpose and ownership |
 | --- | --- |
+| `.gitkeep` | Empty repository-owned placeholder; preserve it and keep generated project files untracked. |
 | `README.md` | Project introduction and a bounded SiliconBoot orientation section. |
 | `AGENTS.md` | Existing project rules plus a bounded guide to this project's active tools, records, and lifecycle. |
 | `project.md` | Human-readable desired scope, profiles, PDK selection, command providers, installation-root record reference, and workflow requirements. |
@@ -24,6 +25,7 @@ Every location in this table is relative to the clone's `workspace/` directory. 
 | `ip/memory/configs`, `ip/memory/manifests` | User memory requests and accepted macro provenance records. |
 | `docs` | Project-specific design documentation. |
 | `runs/<run-id>/artifacts`, `reports`, `logs` | Outputs for one independently recorded design or validation run. |
+| `runs/<run-id>/tmp` | Private temporary directory owned by this run, including its AppImage mountpoints; remove only after all processes and mounts finish. |
 | `runs/<run-id>/run.md` | Generation, inputs, invocation conditions, checks, and artifact identities for that run. |
 | `.siliconboot/current` | The single symlink selecting one complete immutable generation. |
 | `.siliconboot/generations/<generation-id>/tools`, `pdk`, `bin` | Consistent installation and executable views for that generation. |
@@ -74,9 +76,21 @@ Libraries, PDKs, and host-tool plugins may have no public executable. Expose the
 
 For long or reproducible runs, resolve the generation and every environment path to fixed absolute locations before starting and create a lease. Do not pass paths containing `current` into a long-running workflow. The top-level links are convenient discovery views and can change during an upgrade; [generation-pinned runs](installation.md#lock-operations-and-preserve-running-work) keep one coherent environment.
 
+### AppImage temporary mounts
+
+For LibreLane AppImage, create a real, private `workspace/runs/<run-id>/tmp` directory during run admission, using owner-only permissions where supported. Resolve its canonical absolute path and set `TMPDIR` to that path for the AppImage process and its children. The upstream runtime creates and releases its FUSE mount below this directory. Keep the AppImage itself under the selected persistent installation root. Record the actual temporary path, ownership, environment, and checks in the run record and describe the rule in the manifest and generated project guidance.
+
+Verify the mount policy against the real path. On hosts with a restricted AppArmor `fusermount3` profile, a directory below the user's home may be allowed while `/eda/work` is denied. A workspace symlink into a denied location does not establish permission, and a clone outside the home directory needs its own policy check. If the derived project directory is denied, record the precise blocker and preserve the environment; do not weaken the policy or silently relocate the project.
+
+For a mount failure, inspect the actual `TMPDIR`, `/dev/fuse`, the installed FUSE helper, and accessible kernel or audit diagnostics. A mountpoint-policy denial does not establish that FUSE is missing. Recheck startup and an affected function with the same installed AppImage and a verified project temporary directory before changing capability claims. Follow the [LibreLane recipe](../recipes/digital-flow/README.md#librelane-appimage-mountpoints).
+
+Wait for the entire process tree to exit and confirm that no mount remains before applying [owned temporary cleanup](cleanup.md). Preserve the run's inputs, reports, and artifacts. An abandoned mount or uncertain owner blocks deletion of that directory.
+
 ## Version control and portability
 
-Keep `workspace/` local and exclude its contents from SiliconBoot commits using the clone's local Git exclusions, preserving existing rules. The repository's maintained content remains documentation. If the user wants version control for the IC design, follow their chosen project repository policy and track its sources, configuration, memory requests, accepted manifests, guidance, and portable lock there. Portable records use component identities and project-relative paths; they do not contain host-specific installation prefixes, private credentials, or local usernames.
+The root `.gitignore` ignores `/workspace/*` and makes one exception for `/workspace/.gitkeep`. Git tracks that empty file so a fresh clone has a workspace; every generated file, link, nested directory, and hidden state directory remains local. `/workspace2/` is also ignored. Check the staged file list before committing and never force-add generated workspace contents. Preserve unrelated exclusion rules when replacing an older local `/workspace/` exclusion with the committed policy.
+
+If the user wants version control for the IC design, follow their chosen project repository policy and track its sources, configuration, memory requests, accepted manifests, guidance, and portable lock there. Portable records use component identities and project-relative paths; they do not contain host-specific installation prefixes, private credentials, or local usernames.
 
 Exclude machine-local links, `.siliconboot` state, installation caches, native lock files, and large generated outputs from any design repository according to the user's existing policy. Preserve existing exclusion settings. The host-specific environment guide can be kept local; a portable checked-in guide must avoid rendered absolute host paths.
 

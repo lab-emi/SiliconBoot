@@ -7,7 +7,7 @@ Open the cloned SiliconBoot repository in a coding agent with file, network, and
 
 > Find the local SiliconBoot clone and read its AGENTS.md. Create an IC design project in a folder named workspace inside the repository. Use `<ABSOLUTE_INSTALL_PATH>` as the installation root for all IC design tools, SRAM compilers and PDKs. Use uv to manage Python environments; if uv is missing, install it first from its official source. Install the latest official versions supported natively on this host, following the catalog, recipes and lifecycle procedures. Link installations into workspace/tools/ and workspace/pdk/, and executable entrypoints into workspace/bin/. Verify components and supported workflows, record exact versions and sources, and generate workspace/AGENTS.md and workspace/ENVIRONMENT.md. Preserve existing files, report unsupported components and compatibility failures, and clean up owned temporary installers after verification. Use sudo only within my authorization and the host's approval rules. I understand this changes my machine. Use at your own risk.
 
-The installation root is the only path you need to provide. The agent discovers the repository location and uses its `workspace/` folder for the IC project.
+The installation root is the only path you need to provide. The agent discovers the repository location and initializes the IC project in its existing `workspace/` folder. The tracked empty `workspace/.gitkeep` preserves that folder in every fresh clone.
 
 **Use at your own risk.** Native installation can change system packages, use substantial disk space and require sudo. Review the planned changes and grant only the permissions you intend to allow. SiliconBoot and the underlying tools are provided without warranty. You are responsible for your machine, permissions and backups. This notice does not grant sudo permission; never put passwords in prompts or records.
 
@@ -34,15 +34,17 @@ All project paths below are relative to `workspace/` inside the local SiliconBoo
 
 | Location | Purpose |
 | --- | --- |
+| `.gitkeep` | Tracked empty placeholder that preserves the workspace directory |
 | `AGENTS.md`, `project.md`, `ENVIRONMENT.md` | Project instructions, choices, and environment setup |
 | `tools/`, `pdk/`, `bin/` | Links into one active generation of persistent installations |
 | `design/`, `verification/`, `config/` | User sources, checks, and project settings |
 | `ip/memory/` | Memory requests and accepted macro records |
 | `runs/<run-id>/` | Generated artifacts, reports, and logs |
+| `runs/<run-id>/tmp/` | Private temporary files and AppImage mountpoints for that run |
 | `.siliconboot/` | Local receipts, generations, state, and evidence |
 | `config/environment.lock.md` | Portable record of exact versions and build inputs |
 
-Installations live under your chosen installation root in versioned tool and PDK directories. Each accepted generation records its tools, PDKs, entrypoints, and checks together. Keep the local `workspace/` contents out of SiliconBoot commits. See the [project layout](docs/project-layout.md).
+Installations live under your chosen installation root in versioned tool and PDK directories. Each accepted generation records its tools, PDKs, entrypoints, and checks together. The root `.gitignore` excludes all workspace contents except `.gitkeep`, and also excludes `workspace2/`. See the [project layout](docs/project-layout.md) and [AppImage temporary mount guidance](docs/project-layout.md#appimage-temporary-mounts).
 
 ## Start, inspect, or maintain an environment
 

@@ -4,7 +4,7 @@
 
 Contributions improve the instructions an agent follows. Keep English as the development language, including documentation, examples, reviews, and commit messages. Preserve this repository's prompt and documentation architecture: do not add code, scripts, executable examples, installer wrappers, or CI configuration that runs programs.
 
-Use Markdown for catalog entries, recipes, prompts, records, and scenario descriptions. Directory diagrams and field names are documentation; shell programs, command sequences, RTL, and language examples belong in upstream projects or the user's local `workspace/`, which stays out of SiliconBoot commits.
+Use Markdown for catalog entries, recipes, prompts, records, and scenario descriptions. Git ignore rules and the empty `workspace/.gitkeep` are repository metadata. Directory diagrams and field names are documentation; shell programs, command sequences, RTL, and language examples belong in upstream projects or the user's local `workspace/`. Only its empty placeholder belongs in SiliconBoot commits; keep generated contents and `workspace2/` excluded.
 
 ## Add or update a component
 

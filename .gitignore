@@ -1,0 +1,6 @@
+# Keep the workspace placeholder; generated project contents stay local.
+/workspace/*
+!/workspace/.gitkeep
+
+# Preserve the separate local workspace without adding it to this repository.
+/workspace2/

@@ -20,7 +20,10 @@ Status: [RUNNING_SUCCEEDED_FAILED_INTERRUPTED_OR_BLOCKED]
 | Owner host/process/start identity | [OWNER] |
 | Generation and transitive installation references protected | [IDENTITIES] |
 | Host-change, project, and registry lock evidence when registering lease | [EVIDENCE] |
+| Owned temporary directory and effective TMPDIR, if required | [CANONICAL_PATH_OWNERSHIP_AND_SETTING_OR_NOT_APPLICABLE] |
+| FUSE mountpoint policy and native check, if required | [EVIDENCE_OR_NOT_APPLICABLE] |
 | Complete process tree finished | [EVIDENCE_OR_NOT_YET] |
+| Temporary mounts released and owned cleanup outcome | [EVIDENCE_OR_PENDING_OR_NOT_APPLICABLE] |
 | Lease release status and time | [STATUS_AND_TIME_OR_STILL_PROTECTED] |
 
 ## Inputs and execution conditions
