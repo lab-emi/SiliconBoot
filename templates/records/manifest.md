@@ -9,7 +9,9 @@ Generation status: [READY_PARTIAL_OR_BLOCKED]\
 Requested scope: [PROFILE_COMPONENTS_AND_WORKFLOWS]\
 Native host: [HOST_RECORD_REFERENCE]\
 Generation absolute path: [ABSOLUTE_PATH]\
-Store absolute path: [ABSOLUTE_PATH]\
+Store absolute path: [TOOLS_ABSOLUTE_PATH]\
+PDK installation root: [PDKS_ABSOLUTE_PATH]\
+Public binary directory: [BIN_ABSOLUTE_PATH]\
 Documentation snapshot: [ABSOLUTE_PATH_REVISION_AND_DIGEST]\
 Frozen resolution: [PATH_AND_DIGEST]\
 Portable lock: [GENERATION_LOCK_PATH_AND_DIGEST]\
@@ -28,6 +30,8 @@ Include every selected entry, even if it has no installed target. Record missing
 | Exported name | Component/provider | Upstream public target | Interpreter or host tool | Environment requirements | Working-directory rule | Collision choice evidence |
 | --- | --- | --- | --- | --- | --- | --- |
 | [NAME] | [IDENTITY] | [ABSOLUTE_PATH] | [REQUIREMENT_OR_NONE] | [SETTINGS_OR_NONE] | [RULE] | [PROJECT_CHOICE_OR_UNAMBIGUOUS] |
+
+Home binary-link publication, the detected shell configuration and fresh-shell PATH checks are recorded in the host and operation state. Each public name maps through this project's `current/bin` to the upstream target above. Preserve unrelated `~/bin` entries; concrete run paths bypass this mutable convenience view.
 
 ## Libraries, PDKs, and coupled resources
 

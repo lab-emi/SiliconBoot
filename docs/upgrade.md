@@ -4,7 +4,7 @@ Use the corresponding [operational prompt](../prompts/README.md). These are agen
 
 ## Upgrade a selected environment
 
-1. Read `project.md`, the active manifest, portable lock, receipts, validation, retained generations, and live run leases. Record the capabilities that the current environment provides and the user's requested upgrade scope.
+1. Read `.siliconboot/project.md`, the active manifest, portable lock, receipts, validation, retained generations, and live run leases. Record the capabilities that the current environment provides and the user's requested upgrade scope.
 2. Query current official release or documented branch information for the selected components. Expand dependencies and coupled groups, including plugins, PDK builders, runtime dependencies, model binaries, and memory technology ports. Record why every additional component changes.
 3. Freeze a new resolution plan. Compare sources, dependencies, compiler/runtime versions, build options, and patches, not merely displayed version numbers. Record latest-version status separately from compatibility.
 4. Build new installations at new persistent keys. Preserve all active installations and avoid mutating shared PDK data. Verify individual components and every affected workflow that the replacement promises to preserve.
@@ -22,7 +22,7 @@ For Python changes, follow the [Python environment policy](python-environments.m
 ## Restore an exact lock
 
 1. Read the lock's record version and confirm its requested sources, channels, dependencies, build options, command providers, PDK families, and workflow requirements. Use the lock's pinned inputs; do not refresh them to current upstream releases.
-2. Inspect the new host, resolve its store, and register the project while preserving its existing sources and configuration. Reject stale absolute links as portability evidence.
+2. Inspect the new host, resolve `~/tools` and `~/pdks` using its invoking user's home directory, and register the existing project without creating a workspace while preserving its existing sources and configuration. Reject stale absolute links as portability evidence. Use no sudo; record privileged dependency blockers. Reuse recorded roots for an existing environment and report any migration needed. On first setup follow [default-shell PATH setup](project-layout.md#default-shell-path) for `~/bin`.
 3. Determine whether the lock's target OS, architecture, runtime, and ABI constraints can be satisfied natively. Record missing assets, inaccessible sources, unsupported combinations, and unpinned dependencies before building.
 4. Reuse matching verified installations or rebuild from the exact locked sources and dependencies. Verify downloaded bytes against recorded integrity information and preserve the upstream runtime layout.
 5. Create a local manifest with the new host's absolute paths and the unchanged portable source identities. Run component and required workflow checks on this host. A different platform or toolchain creates a new build identity and must be described as such.
@@ -36,7 +36,7 @@ Restore the recorded uv version, interpreter build and Python dependency lock be
 
 Locate the requested generation and all its receipts. Confirm that its installations, PDK data, public entrypoints, runtime resources, and documentation remain present and unchanged. Recheck external system installations, system dependencies, and host ABI compatibility; a retained symlink cannot undo a changed operating system.
 
-Protect the requested generation with an operation lease while validating its required capabilities at the level justified by host changes. For activation, acquire the host-change, project, and registry locks in order, inspect active leases, and recheck that host dependency observations remain valid. Replace only `current` with the verified atomic facility while keeping the host-change gate, then reconcile the portable lock export and project guidance. Record the generation before and after the switch and the actual observed result.
+Protect the requested generation with an operation lease while validating its required capabilities at the level justified by host changes. For activation, acquire the host-change, project, and registry locks in order, inspect active leases, and recheck that host dependency observations remain valid. Replace only `current` with the verified atomic facility while keeping the host-change gate, then reconcile owned `~/bin` symlinks, the portable lock export and local guidance, preserving unrelated entries. Record the generation before and after the switch and the actual observed result.
 
 Managed installations are versioned and retained, so switching their references does not require rebuilding when all dependencies remain valid. System packages, external installations, GPU drivers, and other host-wide changes may prevent the previous generation from working. Report these limits before claiming rollback success. Never automatically downgrade host packages or delete another project's dependencies as part of a rollback.
 

@@ -1,6 +1,6 @@
 # Review unreferenced installations
 
-> Find the local SiliconBoot clone and assess garbage collection in the installation root recorded in workspace/.siliconboot/host.md. Read AGENTS.md, workspace/AGENTS.md and docs/cleanup.md. This request is for a dry run. Reconcile registered projects, every retained generation, active run leases, and installation dependencies under the documented locks. List only installations proven unreferenced, with their receipts and reasons, and list uncertain cases separately. Do not delete anything. Provide a concrete candidate list that I can explicitly select for removal.
+> Find the local SiliconBoot clone and the existing project directory from context, defaulting to the clone. Assess garbage collection across the tool and PDK roots recorded in .siliconboot/host.md. Read AGENTS.md, .siliconboot/AGENTS.md and docs/cleanup.md. This request is for a dry run. Reconcile registered projects, every retained generation, public binary links in ~/bin, active run leases, and installation dependencies under the documented locks. List only installations proven unreferenced, with their receipts and reasons, and list uncertain cases separately. Do not create a workspace, use sudo or delete anything. Provide a concrete candidate list that I can explicitly select for removal.
 
 For an already reviewed candidate list, the user can authorize removal with this follow-up:
 

@@ -1,6 +1,7 @@
-# Keep the workspace placeholder; generated project contents stay local.
-/workspace/*
-!/workspace/.gitkeep
+# Generated guidance, state and run outputs stay local.
+/.siliconboot/
+/runs/
 
-# Preserve the separate local workspace without adding it to this repository.
+# Preserve legacy local workspaces without creating or tracking them.
+/workspace/
 /workspace2/

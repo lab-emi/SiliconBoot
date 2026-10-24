@@ -3,13 +3,13 @@
 **Agent-guided native setup for open-source IC design tools.**\
 **From a prompt to a working IC design environment.**
 
-Open the cloned SiliconBoot repository in a coding agent with file, network, and terminal access. Replace `<ABSOLUTE_INSTALL_PATH>` with the directory where you want all IC design tools, SRAM compilers, and PDKs installed, then paste this prompt:
+Open the cloned SiliconBoot repository in a coding agent with file, network, and terminal access, then paste this prompt:
 
-> Find the local SiliconBoot clone and read its AGENTS.md. Create an IC design project in a folder named workspace inside the repository. Use `<ABSOLUTE_INSTALL_PATH>` as the installation root for all IC design tools, SRAM compilers and PDKs. Use uv to manage Python environments; if uv is missing, install it first from its official source. Install the latest official versions supported natively on this host, following the catalog, recipes and lifecycle procedures. Link installations into workspace/tools/ and workspace/pdk/, and executable entrypoints into workspace/bin/. Verify components and supported workflows, record exact versions and sources, and generate workspace/AGENTS.md and workspace/ENVIRONMENT.md. Preserve existing files, report unsupported components and compatibility failures, and clean up owned temporary installers after verification. Use sudo only within my authorization and the host's approval rules. I understand this changes my machine. Use at your own risk.
+> Find the local SiliconBoot clone and read its AGENTS.md. Install EDA tools, SRAM compilers, uv and isolated runtimes under `~/tools`, and PDKs under `~/pdks`, using persistent versioned locations without sudo. Do not create a workspace or scaffold a design project. Use the existing project directory from context, or the clone itself, for local `.siliconboot/` guidance and records. Use uv to manage Python environments; if uv is missing, install and verify it first from its official source. Install the latest official versions supported natively on this host, following the catalog, recipes and lifecycle procedures. Put symbolic links to verified upstream public binaries in `~/bin`, preserving existing files and resolving name collisions. Detect my default login shell and add `~/bin` to PATH once in its bashrc, zshrc or fish configuration, respecting custom configuration locations. Verify components and supported workflows, record exact versions and sources, and generate `.siliconboot/AGENTS.md` and `.siliconboot/ENVIRONMENT.md`. Report unsupported components, compatibility failures and dependencies that require administrator action; continue independent work without elevation. Clean up owned temporary installers after verification. I understand this changes my machine. Use at your own risk.
 
-The installation root is the only path you need to provide. The agent discovers the repository location and initializes the IC project in its existing `workspace/` folder. The tracked empty `workspace/.gitkeep` preserves that folder in every fresh clone.
+No installation path is required. The agent expands these paths against your home directory and discovers the repository and any existing project from context. Setup creates no workspace. Existing workspace contents remain untouched.
 
-**Use at your own risk.** Native installation can change system packages, use substantial disk space and require sudo. Review the planned changes and grant only the permissions you intend to allow. SiliconBoot and the underlying tools are provided without warranty. You are responsible for your machine, permissions and backups. This notice does not grant sudo permission; never put passwords in prompts or records.
+**Use at your own risk.** Native installation uses disk space and changes user-owned installations, binary links and the detected shell's PATH configuration. Setup uses no sudo; missing privileged dependencies are reported as blockers. SiliconBoot and the underlying tools are provided without warranty. You are responsible for your machine, permissions and backups. Never put passwords in prompts or records.
 
 ## What this repository provides
 
@@ -28,23 +28,22 @@ The default scope is the `all` [profile](catalog/profiles.md), including uv as t
 
 Catalog coverage is documentation coverage. No complete profile is currently verified. WSL2, virtual machines, containers, and translated execution must be identified separately; they do not establish native support for the physical host. See [platform policy](docs/platforms.md) and [acceptance criteria](docs/acceptance.md).
 
-## The resulting project
+## Installation locations
 
-All project paths below are relative to `workspace/` inside the local SiliconBoot clone.
+Setup uses the following locations and preserves existing content. Project-relative paths refer to the existing directory selected from context, defaulting to the local clone.
 
 | Location | Purpose |
 | --- | --- |
-| `.gitkeep` | Tracked empty placeholder that preserves the workspace directory |
-| `AGENTS.md`, `project.md`, `ENVIRONMENT.md` | Project instructions, choices, and environment setup |
-| `tools/`, `pdk/`, `bin/` | Links into one active generation of persistent installations |
-| `design/`, `verification/`, `config/` | User sources, checks, and project settings |
-| `ip/memory/` | Memory requests and accepted macro records |
+| `~/tools/<component>/<install-key>/` | Persistent EDA tools, SRAM compilers and isolated component runtimes |
+| `~/pdks/<family>/<install-key>/` | Persistent PDK families, resources and receipts |
+| `~/bin/` | Symbolic links to verified upstream public executable entrypoints |
+| `.siliconboot/AGENTS.md`, `.siliconboot/project.md`, `.siliconboot/ENVIRONMENT.md` | Local instructions, choices and environment setup |
+| `.siliconboot/` | Local receipt references, generations, state and evidence |
+| `.siliconboot/environment.lock.md` | Portable record of exact versions and build inputs |
 | `runs/<run-id>/` | Generated artifacts, reports, and logs |
 | `runs/<run-id>/tmp/` | Private temporary files and AppImage mountpoints for that run |
-| `.siliconboot/` | Local receipts, generations, state, and evidence |
-| `config/environment.lock.md` | Portable record of exact versions and build inputs |
 
-Installations live under your chosen installation root in versioned tool and PDK directories. Each accepted generation records its tools, PDKs, entrypoints, and checks together. The root `.gitignore` excludes all workspace contents except `.gitkeep`, and also excludes `workspace2/`. See the [project layout](docs/project-layout.md) and [AppImage temporary mount guidance](docs/project-layout.md#appimage-temporary-mounts).
+Each accepted generation records its tools, PDKs, entrypoints and checks together. Shell setup selects `~/.bashrc`, the effective zshrc, or fish's configuration according to the default login shell. Runs are created only when needed; setup does not create design-source directories. The root `.gitignore` keeps generated records, runs and legacy workspace contents local. See the [project layout](docs/project-layout.md), [shell setup](docs/project-layout.md#default-shell-path) and [AppImage temporary mount guidance](docs/project-layout.md#appimage-temporary-mounts).
 
 ## Start, inspect, or maintain an environment
 

@@ -7,7 +7,7 @@ Start at the repository [README](../README.md) and [agent guide](../AGENTS.md).
 | [Bootstrap](bootstrap.md) | Scope, host inspection, discovery, installation, and handoff |
 | [Installation](installation.md) | Native providers, dependencies, runtime isolation, and activation |
 | [Python environments](python-environments.md) | uv bootstrap, isolated environments, exact interpreters, and upstream exceptions |
-| [Project layout](project-layout.md) | Persistent store, project directories, and generation links |
+| [Project layout](project-layout.md) | Home installation roots, existing project records, generation links and default-shell PATH |
 | [Records](records.md) | Required fields and consistent state reporting |
 | [Validation](validation.md) | Component checks and cross-tool acceptance |
 | [Platforms](platforms.md) | Evidence required for native support |

@@ -12,7 +12,7 @@ Check the selected revision's installation instructions for the actual OS and CP
 
 Follow [installation](../../docs/installation.md) before changing the host. Resolve the C compiler, X11, Tcl/Tk, Xpm, parser tools and other dependencies from the chosen source. Record the Tcl/Tk and X11 providers, especially on macOS where incompatible toolkit variants can coexist.
 
-Install the upstream executable, symbol libraries, Tcl resources and documentation together in a persistent prefix. Link only the actual public executable into project `bin/`. Document the selected PDK's Xschem configuration and symbol search paths in the project's activation instructions. Keep project overrides under `config/tools/`; do not edit the shared PDK or the user's global startup files. Use documented upstream configuration or explicit process environment; do not create a custom launcher.
+Install the upstream executable, symbol libraries, Tcl resources and documentation together in a persistent prefix. Link only the actual public executable through the generation's `bin` view and publish its symlink in `~/bin`. Document the selected PDK's Xschem configuration and symbol search paths in the project's activation instructions. Keep project overrides under `config/tools/`; do not edit the shared PDK or the user's global Xschem startup files. Use documented upstream configuration or explicit process environment; do not create a custom launcher.
 
 ## Acceptance
 

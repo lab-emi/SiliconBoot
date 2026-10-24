@@ -10,17 +10,17 @@ A future incompatible contract must increment the record version, document migra
 
 | Type | Location | Scope |
 | --- | --- | --- |
-| Project | `project.md` | Desired choices, scope, policies, and required workflows; largely portable. |
+| Project | `.siliconboot/project.md` | Desired choices, scope, policies, and required workflows; largely portable. |
 | Host | `.siliconboot/host.md` | Native platform, paths, capabilities, approvals, and system dependency observations; host-specific. |
 | Resolution | `.siliconboot/resolutions/<operation-id>.md` | Frozen discovery results, official evidence, dependency graph, and planned build identities. |
 | State | `.siliconboot/state.md` | Resumable operation transitions, ownership, locks, pending work, and recovery status; host-specific. |
 | Receipt | Store installation directory's `receipt.md` | Immutable identity and evidence for one verified managed installation; host-specific. |
 | Manifest | Generation's `manifest.md` | Host-specific installation, entrypoint, environment, and capability map. |
-| Lock | Generation's `lock.md`; exported as `config/environment.lock.md` | Exact portable sources, build choices, dependencies, and declared compatibility limits. |
+| Lock | Generation's `lock.md`; exported as `.siliconboot/environment.lock.md` | Exact portable sources, build choices, dependencies, and declared compatibility limits. |
 | Validation | Generation's `validation.md` | Component and workflow checks tied to exact inputs and artifacts. |
 | Run | `runs/<run-id>/run.md` | Generation-pinned process and design evidence; separate from install verification. |
 | Memory | Run's memory evidence; accepted copy under `ip/memory/manifests/<macro-id>.md` | Exact macro request, all output views, independent check results, and explicit acceptance. |
-| Registry | Store's `registry.md` | Project references, retained generations, installation ownership, and run leases; host-specific. |
+| Registry | `~/tools/.siliconboot/registry.md` | Both installation roots, project references, retained generations, installation and home binary-link ownership, and run leases; host-specific. |
 
 The generation manifest, lock, and validation form one consistency unit. A candidate is not eligible for activation until their generation identity and component identities agree. Once activated, preserve these records with their generation; add new diagnostic/run evidence separately and create a new generation for changed environment claims. Post-cleanup checks and actual cleanup outcomes belong in separate run/state/log records linked from the immutable records. If those checks invalidate an active capability, record the current failure prominently in state, block affected runs, and reconcile or roll back; never conceal the failure by editing historical evidence.
 

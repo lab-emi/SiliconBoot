@@ -22,7 +22,7 @@ Record type: Project
 | Resource/concurrency limits | [LIMITS_AND_MEASUREMENT_SOURCE] |
 | Required retention | [ACTIVE_PREVIOUS_USER_RETAINED_AND_LEASED_GENERATIONS] |
 
-The project directory is `workspace/` under the discovered SiliconBoot clone. Record the user's absolute installation root in the host record and reuse it for maintenance. This portable project record refers to that local record without embedding host-specific paths.
+Use the existing project directory identified from context, defaulting to the discovered SiliconBoot clone; do not create a workspace or design scaffold. Record `~/tools`, `~/pdks`, `~/bin`, the detected default login shell and its effective startup configuration in the host record. Reuse the canonical roots for maintenance and preserve older environments until any root migration is resolved. This portable project record refers to that local record without embedding host-specific paths.
 
 ## Required workflows
 

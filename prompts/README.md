@@ -1,8 +1,8 @@
 # Operation prompts
 
-These are requests to an agent, not shell commands or a SiliconBoot CLI. Open the cloned repository in the agent and read [AGENTS.md](../AGENTS.md) first; these prompts inherit its constraints. The agent discovers the clone and uses its `workspace/` directory as the IC project.
+These are requests to an agent, not shell commands or a SiliconBoot CLI. Open the cloned repository in the agent and read [AGENTS.md](../AGENTS.md) first; these prompts inherit its constraints. The agent discovers the clone and any existing design project from context, using the clone itself when no separate project is selected. It does not create a workspace or scaffold design directories.
 
-For setup, replace only `<ABSOLUTE_INSTALL_PATH>` with the absolute directory where all IC design tools, SRAM compilers, and PDKs should be installed. Maintenance prompts reuse the installation root recorded in `workspace/.siliconboot/host.md`. Other placeholders describe a task, component selection, or record ID; repository and project paths are derived by the agent.
+Setup needs no path placeholder: EDA tools, SRAM compilers, uv and isolated runtimes go under `~/tools`, PDKs under `~/pdks`, and verified public binary symlinks under `~/bin`, without sudo. Setup detects the default login shell and adds `~/bin` to PATH in its bashrc, zshrc or fish configuration. Maintenance reuses the canonical roots and shell settings recorded in the existing project's `.siliconboot/host.md`; it does not silently move older installations. Other placeholders describe a task, component selection or record ID; repository and project paths are derived by the agent.
 
 | Prompt | Result |
 | --- | --- |

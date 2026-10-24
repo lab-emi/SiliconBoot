@@ -19,7 +19,7 @@ This keeps the project usable by any agent that can read files, inspect official
 | Recipe | Upstream-specific decisions and concrete checks |
 | Lifecycle docs | Preservation, resolution, installation, activation, and recovery |
 | Project records | What actually happened on one host and what can be reproduced |
-| Project AGENTS.md | How another agent locates and uses that recorded environment |
+| Project .siliconboot/AGENTS.md | How another agent locates and uses that recorded environment alongside the project's existing instructions |
 
 The agent must convert prose requirements into concrete, reviewed host operations. Documentation cannot provide an atomic transaction or enforce a lock by itself. The agent must use suitable native facilities, verify their behavior, and stop activation or destructive cleanup when it cannot establish the required guarantees.
 

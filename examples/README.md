@@ -36,4 +36,4 @@ Use the [memory guide](../docs/memory-compilers.md) to choose a real compiler an
 
 Use the [upgrade prompt](../prompts/upgrade.md). Resolve affected dependencies and create a separate installation and candidate generation. If a required check fails, keep the previous generation and retain diagnostic records. If the candidate passes, activate it and retain the previous generation. Use the [rollback prompt](../prompts/rollback.md) when a rollback is explicitly requested.
 
-**Acceptance:** One generation is selected consistently across tools, PDKs and binary providers. Existing runs keep their original generation. A new agent can read the project's AGENTS.md and ENVIRONMENT.md, locate exact installations and rerun the documented checks without access to the previous session's environment.
+**Acceptance:** One generation is selected consistently across tools, PDKs and binary providers. Existing runs keep their original generation. A new agent can read the project's existing AGENTS.md together with .siliconboot/AGENTS.md and .siliconboot/ENVIRONMENT.md, locate exact installations and rerun the documented checks without access to the previous session's environment.

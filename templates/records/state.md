@@ -45,6 +45,8 @@ These rows describe native locks; they do not create locks. Uncertain owners and
 | Atomic replacement mechanism | [MECHANISM_OR_BLOCKER] |
 | Replacement attempted at | [UTC_TIME_OR_NOT_ATTEMPTED] |
 | Observed current target after operation | [ABSOLUTE_PATH_AND_OBSERVATION_TIME] |
+| Home binary-link publication and obsolete owned-link reconciliation | [RESULT_AND_EXACT_LINK_TARGETS_OR_PENDING] |
+| Default-shell PATH setup and verification | [CONFIGURATION_BACKUP_CHECKS_OR_BLOCKER] |
 | Portable lock export status | [MATCHING_DIGEST_OR_PENDING] |
 | Guidance reconciliation status | [RESULT_OR_PENDING] |
 | Previous generation retention | [PROTECTED_REFERENCE] |

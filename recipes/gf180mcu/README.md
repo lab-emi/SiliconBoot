@@ -14,7 +14,7 @@ Select the standard-cell library and required voltage/process/temperature corner
 
 ## Install and activate
 
-Build the selected resolved sources or obtain a matching published package. Preserve the family root and all linked siblings. Expose the exact `gf180mcuD` directory under project `pdk/` and document its configuration without changing the shared installation. Add no executable for the PDK itself.
+Build the selected resolved sources or obtain a matching published package. Preserve the family root and all linked siblings. Expose the exact `gf180mcuD` directory in the generation's `pdk/` view of its persistent `~/pdks` installation and document its configuration without changing the shared installation. Add no executable for the PDK itself.
 
 Inspect required primitive models, Xschem symbols, Magic technology, Netgen setup, KLayout rules, library netlists and timing/physical views. Mark absent tool integrations individually. Do not infer that a successful SKY130 workflow also supports GF180MCU.
 

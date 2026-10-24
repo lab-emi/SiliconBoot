@@ -12,9 +12,9 @@ Routine cleanup removes temporary files owned by the completed operation. It doe
 4. Acquire the applicable native locks, recheck ownership and active uses immediately before deletion, and stop if the filesystem state changed. For a run's `tmp` directory, confirm the complete process tree has exited and no FUSE or other mount remains beneath it. Preserve mounted or uncertain directories. Never follow a symlink into another tree. If native facilities cannot perform safe no-follow deletion with the required guarantees, leave the candidate and report why.
 5. Preserve source URLs, integrity records, final receipts, licenses, validation evidence, logs, and measured resource information. Delete only the exact approved owned candidates and record outcomes, reclaimed space where measured, and skipped paths.
 
-Do not delete runtime source, language environments, PDK technology data, shared family resources, model binaries, active installations, previous generations, user design data, verification inputs, accepted memory macros, run artifacts, or third-party files. Do not recursively sweep a broad store, home, project, or system directory.
+Preserve `~/bin` public symlinks and the user's shell PATH configuration during temporary cleanup. Do not delete runtime source, language environments, PDK technology data, shared family resources, model binaries, active installations, previous generations, user design data, verification inputs, accepted memory macros, run artifacts, or third-party files. Do not recursively sweep a broad store, home, project, or system directory.
 
-uv-managed Python installations are persistent runtime dependencies. Retain their exact directories and executable targets while any environment, retained generation or lease references them. Treat the store's shared `cache/uv` under the shared-cache rule below; a successfully created environment does not authorize a cache sweep.
+uv-managed Python installations are persistent runtime dependencies. Retain their exact directories and executable targets while any environment, retained generation or lease references them. Treat the shared `~/tools/.siliconboot/cache/uv` under the shared-cache rule below; a successfully created environment does not authorize a cache sweep.
 
 Failed builds may retain diagnostic working directories. List their measured size, owner operation, and resume value. A later explicit cleanup can remove those temporary files once no active operation uses them; keep the failure logs and record that rebuilding will be required. Unknown ownership remains a blocker to deletion.
 
@@ -32,6 +32,7 @@ Protect all of the following:
 - Any installation whose registry, receipt, ownership, or project references cannot be read or reconciled.
 - PDK family members and shared resources as one coupled installation.
 - Documentation snapshots referenced by protected generations or project guidance.
+- Installations and generations referenced by published `~/bin` symlinks, including unresolved or unregistered link ownership.
 
 A missing or inaccessible project does not prove that its references are dead. Do not automatically unregister a project because its path was temporarily unavailable or moved. Require an explicit retirement or migration record and resolve leases first. Keep registry identities consistent across projects sharing the same store.
 

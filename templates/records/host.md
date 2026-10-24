@@ -13,7 +13,15 @@ Observed at: [UTC_TIME]
 | Execution environment | [DIRECT_NATIVE_OR_EXPLICIT_ENVIRONMENT_DESCRIPTION] |
 | Discovered SiliconBoot clone | [REPOSITORY_ABSOLUTE_PATH] |
 | Project identifier and canonical path | [PROJECT_ID_AND_ABSOLUTE_PATH] |
-| User-supplied installation root and canonical store path | [ABSOLUTE_PATH_AND_REQUEST_REFERENCE] |
+| User-supplied installation root and canonical store path | [LEGACY_ROOT_OR_NOT_APPLICABLE_FOR_HOME_LAYOUT] |
+| Invoking user and actual home directory | [NONSECRET_USER_ID_AND_HOME_ABSOLUTE_PATH] |
+| Tool installation root | [TOOLS_ABSOLUTE_AND_CANONICAL_PATHS] |
+| PDK installation root | [PDKS_ABSOLUTE_AND_CANONICAL_PATHS] |
+| Public binary directory | [BIN_ABSOLUTE_AND_CANONICAL_PATHS] |
+| Root ownership, write access and existing symlinks | [INSPECTION_EVIDENCE_AND_CONFLICTS_OR_NONE] |
+| Default login shell and detection evidence | [SHELL_EXECUTABLE_ACCOUNT_LOOKUP_OR_RECORDED_FALLBACK] |
+| Effective shell startup configuration | [CONFIGURATION_ABSOLUTE_PATH_AND_DISCOVERY_EVIDENCE] |
+| PATH update, backup and fresh-shell checks | [CHANGE_OR_EXISTING_RULE_BACKUP_AND_EVIDENCE_OR_BLOCKER] |
 | Documentation snapshot | [REVISION_DIGEST_AND_ABSOLUTE_PATH] |
 | Project/store filesystem types | [FILESYSTEMS_AND_MOUNT_CHARACTERISTICS] |
 | Free disk and memory | [MEASUREMENTS_AND_TIME] |
@@ -43,4 +51,4 @@ Observed at: [UTC_TIME]
 | --- | --- | --- | --- |
 | [OPERATION_OR_NONE] | [SCOPE] | [REQUIREMENTS] | [OUTCOME] |
 
-Record package names and versions before and after changes, affected workflows and run leases, and any rollback limitations. Do not record passwords, tokens, or sensitive approval material.
+Setup uses no sudo or system package changes. Record missing privileged dependencies as blockers and any separately requested administrator action here. For such separate changes, record package names and versions before and after changes, affected workflows and run leases, and any rollback limitations. Do not record passwords, tokens, or sensitive approval material.

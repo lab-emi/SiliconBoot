@@ -14,7 +14,7 @@ PDK text and layout data may be portable, but the builder and consuming tools mu
 
 ## Install and activate
 
-Keep all built variants and shared files in the persistent family root. Expose `pdk/sky130A` through the project generation described in [project layout](../../docs/project-layout.md). Configure `PDK_ROOT`, the variant, and each tool's documented technology path through project activation instructions. The PDK has no generic executable to add to `bin/`.
+Keep all built variants and shared files in the persistent family root under `~/pdks`. Expose `pdk/sky130A` through the project generation described in [project layout](../../docs/project-layout.md). Configure `PDK_ROOT`, the variant, and each tool's documented technology path through project activation instructions. The PDK has no generic executable to add to `~/bin/`.
 
 Check that the chosen Xschem symbols, ngspice model includes, Magic technology, Netgen setup, KLayout decks and digital library views exist before enabling their respective workflows. An absent deck limits that workflow; do not manufacture it or reuse another process's rules. Project overrides and generated outputs must remain outside the immutable PDK.
 

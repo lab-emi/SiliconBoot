@@ -2,7 +2,7 @@
 
 These are Markdown templates for the agent to read, copy, and fill. They are not executable files or a template language. Follow the [record contract](../docs/records.md), [project layout](../docs/project-layout.md), and [installation transaction](../docs/installation.md).
 
-The agent fills these templates; users do not supply the internal path placeholders. Derive the project location as `workspace/` under the discovered SiliconBoot clone, use the user's absolute installation root as the store, and derive the remaining paths from those locations.
+The agent fills these templates; users do not supply the internal path placeholders. Use the existing project directory identified from context, defaulting to the discovered SiliconBoot clone. Do not create a workspace or design scaffold. Derive tool paths under `~/tools`, PDK paths under `~/pdks`, public binary symlinks under `~/bin` and generated guidance under the existing project's `.siliconboot/`. Expand home paths using the invoking user's actual home directory and record canonical roots.
 
 Replace every square-bracketed uppercase placeholder with a concrete value. Repeat a component, dependency, entrypoint, check, or artifact row as needed. Remove authoring instructions after rendering. For unavailable values use `unknown`, `not applicable`, or `not_run` with a reason. Check results use `pass`, `fail`, `blocked`, or `not_run`; independent capability claims use the values in the [record contract](../docs/records.md). Never publish an active record containing unresolved placeholders. Resolve host paths to absolute paths and make Markdown links point to the actual persistent files; portable locks contain logical identities and project-relative paths instead.
 
@@ -10,14 +10,14 @@ Replace every square-bracketed uppercase placeholder with a concrete value. Repe
 
 | Template | Rendered destination |
 | --- | --- |
-| [Project README](project/README.md) | Project `README.md`, or its bounded SiliconBoot section. |
-| [Project agent guide](project/AGENTS.md) | Project `AGENTS.md`, or its bounded SiliconBoot section. |
-| [Project choices](project/PROJECT.md) | Project `project.md`. |
-| [Environment guide](project/ENVIRONMENT.md) | Project `ENVIRONMENT.md`. |
+| [Project README](project/README.md) | Project `.siliconboot/README.md`, or its bounded SiliconBoot section. |
+| [Project agent guide](project/AGENTS.md) | Project `.siliconboot/AGENTS.md`, or its bounded SiliconBoot section. |
+| [Project choices](project/PROJECT.md) | Project `.siliconboot/project.md`. |
+| [Environment guide](project/ENVIRONMENT.md) | Project `.siliconboot/ENVIRONMENT.md`. |
 
-The headings `SiliconBoot managed section begins` and `SiliconBoot managed section ends` bound the replaceable region in project README, AGENTS, and environment guidance. For an existing file, preserve all content outside those headings. If the markers are absent, append a proposed section only after checking for conflicting instructions. If a previous generated section exists, compare it with the previous rendered copy and preserve user edits; do not blindly replace them. Keep a recoverable copy and record the merge. Multiple or malformed boundaries require reconciliation before writing.
+The headings `SiliconBoot managed section begins` and `SiliconBoot managed section ends` bound the replaceable region in generated guidance under `.siliconboot/`. Keep root project README and AGENTS files authoritative and unchanged by setup. For an existing file, preserve all content outside those headings. If the markers are absent, append a proposed section only after checking for conflicting instructions. If a previous generated section exists, compare it with the previous rendered copy and preserve user edits; do not blindly replace them. Keep a recoverable copy and record the merge. Multiple or malformed boundaries require reconciliation before writing.
 
-Use the actual persistent documentation snapshot path for all project guide links, not the source checkout's temporary location. Keep the generated AGENTS concise; component details belong in recipes and manifests. Do not generate shell activation files, launchers, helper programs, JSON records, or ignore-file templates.
+Use the actual persistent documentation snapshot path for all project guide links, not the source checkout's temporary location. Keep the generated AGENTS concise; component details belong in recipes and manifests. Do not generate shell activation files, launchers, helper programs, JSON records or ignore-file templates. The authorized PATH change is a bounded section in the detected default shell's existing user configuration, following [shell setup](../docs/project-layout.md#default-shell-path).
 
 ## Record templates
 

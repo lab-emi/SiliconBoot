@@ -2,7 +2,9 @@
 
 Record version: 1\
 Record type: Registry\
-Store canonical absolute path: [STORE_PATH]\
+Store canonical absolute path: [TOOLS_CANONICAL_PATH]\
+PDK canonical absolute path: [PDKS_CANONICAL_PATH]\
+Shared bookkeeping directory: [STORE_METADATA_ABSOLUTE_PATH]\
 Updated at: [UTC_TIME]\
 Record revision: [REVISION]\
 Previous revision digest: [DIGEST_OR_INITIAL]\
@@ -25,6 +27,14 @@ Native registry lock evidence for this update: [EVIDENCE]
 | Component/installation key | Managed or external | Canonical root and receipt | Owning creation operation | Referring projects/generations and dependencies | State | Deletion protection |
 | --- | --- | --- | --- | --- | --- | --- |
 | [IDENTITY] | [OWNERSHIP] | [PATHS_AND_DIGEST] | [OPERATION_ID_OR_EXTERNAL] | [REFERENCES] | [STATE] | [REASON_OR_CANDIDATE_PENDING_RECHECK] |
+
+## Home binary-link ownership
+
+| Public symlink path | Owning project | Recorded link text through current/bin | Selected upstream provider | Last observed target and status |
+| --- | --- | --- | --- | --- |
+| [BIN_ABSOLUTE_PATH_AND_NAME] | [PROJECT_ID] | [LINK_TEXT] | [COMPONENT_AND_RECEIPT] | [OBSERVATION_AND_EVIDENCE] |
+
+Existing files, unrelated symlinks and names owned by other projects remain preserved until a provider conflict is explicitly resolved. Published links protect their referenced installations and generations during collection.
 
 ## Run and operation leases
 
