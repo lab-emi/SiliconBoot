@@ -30,6 +30,8 @@ Observed at: [UTC_TIME]
 | uv discovery | [ABSOLUTE_PATH_VERSION_PROVIDER_AND_NATIVE_ARCHITECTURE_OR_MISSING] |
 | Python setup prerequisite | [UV_REUSE_OR_OFFICIAL_INSTALL_PLAN_AND_INTERPRETER_REQUIREMENTS] |
 | System package manager | [PROVIDER_AND_STATE_REFERENCE] |
+| macOS Homebrew | [EXECUTABLE_VERSION_NATIVE_ARCHITECTURE_PREFIX_OWNERSHIP_WRITE_ACCESS_AND_AVAILABILITY_OR_NOT_APPLICABLE] |
+| Homebrew external locations and retention limits | [CONCRETE_KEG_CASKROOM_APPLICATION_PATHS_DEPENDENCIES_AND_RECORD_REFERENCES_OR_NOT_APPLICABLE] |
 | GUI/display availability | [OBSERVATION_AND_LIMITATIONS] |
 | Network or source-access limits | [LIMITATIONS_OR_NONE] |
 | Existing installation inventory | [INVENTORY_REFERENCE] |
@@ -51,4 +53,4 @@ Observed at: [UTC_TIME]
 | --- | --- | --- | --- |
 | [OPERATION_OR_NONE] | [SCOPE] | [REQUIREMENTS] | [OUTCOME] |
 
-Setup uses no sudo or system package changes. Record missing privileged dependencies as blockers and any separately requested administrator action here. For such separate changes, record package names and versions before and after changes, affected workflows and run leases, and any rollback limitations. Do not record passwords, tokens, or sensitive approval material.
+Setup uses no sudo or administrator-managed package changes. Scoped, user-writable macOS Homebrew changes follow [the macOS policy](../../docs/installation.md#macos-check-homebrew-first); record affected package and dependency versions, retained-generation impact and rollback limits here. Record missing privileged dependencies as blockers and any separately requested administrator action here. For such separate changes, record package names and versions before and after changes, affected workflows and run leases, and any rollback limitations. Do not record passwords, tokens, or sensitive approval material.

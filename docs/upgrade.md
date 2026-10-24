@@ -5,9 +5,9 @@ Use the corresponding [operational prompt](../prompts/README.md). These are agen
 ## Upgrade a selected environment
 
 1. Read `.siliconboot/project.md`, the active manifest, portable lock, receipts, validation, retained generations, and live run leases. Record the capabilities that the current environment provides and the user's requested upgrade scope.
-2. Query current official release or documented branch information for the selected components. Expand dependencies and coupled groups, including plugins, PDK builders, runtime dependencies, model binaries, and memory technology ports. Record why every additional component changes.
+2. Query current official release or documented branch information for the selected components. On macOS, check current Homebrew formulae/casks first against those exact versions and apply [the macOS selection policy](installation.md#macos-check-homebrew-first), recording the chosen package or fallback reason. Expand dependencies and coupled groups, including plugins, PDK builders, runtime dependencies, model binaries, and memory technology ports. Record why every additional component changes.
 3. Freeze a new resolution plan. Compare sources, dependencies, compiler/runtime versions, build options, and patches, not merely displayed version numbers. Record latest-version status separately from compatibility.
-4. Build new installations at new persistent keys. Preserve all active installations and avoid mutating shared PDK data. Verify individual components and every affected workflow that the replacement promises to preserve.
+4. Build new managed installations at new persistent keys, or install matching Homebrew packages at their recorded external locations. Preserve all active installations and avoid mutating shared PDK data. Homebrew mutations require dependency-impact checks under the host-change gate, suppression of automatic cleanup and unrelated dependent upgrades, and protection of retained generations and leases. If replacement cannot preserve them, defer it and use the documented latest-version fallback. Verify individual components and every affected workflow that the replacement promises to preserve.
 5. Create and verify a complete candidate generation. Activate it atomically only when the required checks pass. Retain the prior valid generation, its installations, and the reference records. An active lease can retain an even older generation.
 6. Export the active portable lock, reconcile the project guidance, and remove only eligible temporary artifacts under the [cleanup procedure](cleanup.md). Report changed versions, providers, capabilities, host packages, remaining limitations, and rollback conditions.
 
@@ -29,6 +29,8 @@ For Python changes, follow the [Python environment policy](python-environments.m
 6. Activate only the verified result according to the normal transaction. Record whether the evidence supports exact input restoration, matching artifact hashes, and/or the named workflow results. Keep unresolved portions explicit.
 
 An unavailable exact source or dependency blocks the corresponding restore. Do not resolve a newer tag, substitute a fork, change a memory technology port, or omit an input while claiming the original environment was restored. A user-approved alternate environment gets its own lock and explanation. No cross-host or bit-for-bit equivalence is assumed.
+
+Homebrew-first discovery does not override an exact lock. Restore a locked Homebrew package only when its recorded definition, package revision, artifact and dependencies remain available and match; Homebrew's current formula/cask or a matching upstream version alone is insufficient. Do not silently replace a locked standalone provider with Homebrew or replace an unavailable Homebrew package with a source build.
 
 Restore the recorded uv version, interpreter build and Python dependency lock before rebuilding its environments. If an older lock predates uv and records another manager, preserve that identity for exact restore and report any missing manager information. Adopting uv requires a separately recorded maintenance change; it must not silently alter the restored inputs.
 

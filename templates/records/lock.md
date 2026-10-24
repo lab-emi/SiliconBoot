@@ -19,6 +19,8 @@ This record contains portable exact input identities. Host paths, local username
 
 ## Locked dependencies and build choices
 
+For a Homebrew provider, lock the formula/cask token, tap, definition revision or digest, upstream version, package revision, bottle/asset URL and digest, and exact dependency identities. Keep actual prefix, keg and application paths in local records. An exact restore must not substitute Homebrew's current package or a different provider when the locked inputs are unavailable.
+
 | Component/input | Exact dependency identities and edge types | Compiler/runtime requirements | Build options | ABI constraints | Coupled group | Patch source, digest and modification status |
 | --- | --- | --- | --- | --- | --- | --- |
 | [ID] | [TRANSITIVE_IDENTITIES] | [EXACT_REQUIREMENTS] | [CHOICES] | [CONSTRAINTS] | [GROUP_OR_NONE] | [IDENTITY_OR_NONE] |

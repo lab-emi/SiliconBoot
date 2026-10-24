@@ -14,6 +14,8 @@ Verified at: [UTC_TIME_OR_NOT_VERIFIED]
 | Canonical component ID and kind | [ID_AND_KIND] |
 | Package identity, repository identity, and aliases | [IDENTITIES] |
 | Provider and channel | [PROVIDER_AND_CHANNEL] |
+| macOS Homebrew comparison and selection | [DATED_UPSTREAM_PACKAGE_COMPARISON_AND_CHOSEN_PROVIDER_OR_FALLBACK_REASON_OR_NOT_APPLICABLE] |
+| Homebrew package definition and artifact | [FORMULA_OR_CASK_TOKEN_TAP_DEFINITION_REVISION_OR_DIGEST_PACKAGE_REVISION_BOTTLE_OR_ASSET_IDENTITY_OR_NOT_APPLICABLE] |
 | Ownership | [MANAGED_OR_EXTERNAL_AND_OWNER] |
 | Official homepage | [URL] |
 | Official repository and canonical redirects | [URL_AND_REDIRECTS_OR_NONE] |
@@ -43,6 +45,7 @@ Verified at: [UTC_TIME_OR_NOT_VERIFIED]
 | Python dependency resolution | [LOCK_OR_REQUIREMENTS_ASSET_SOURCE_DIGEST_EXTRAS_INDEXES_AND_BUILD_INPUTS_OR_NOT_APPLICABLE] |
 | Python setup settings and runtime exception | [UV_STORAGE_AND_ENVIRONMENT_SETTINGS_EXCEPTION_EVIDENCE_OR_NOT_APPLICABLE] |
 | Final persistent prefix | [ABSOLUTE_PATH] |
+| Homebrew external runtime locations and limits | [PREFIX_CONCRETE_KEG_CASKROOM_APPLICATION_PATHS_DEPENDENCY_CLOSURE_AND_RETENTION_LIMITS_OR_NOT_APPLICABLE] |
 | Normalized installation-identity fields and digest | [INPUTS_AND_DIGEST] |
 | Build options | [EXACT_CHOICES] |
 | Dependency receipts and ABI constraints | [EXACT_DEPENDENCIES_AND_CONSTRAINTS] |

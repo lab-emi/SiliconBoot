@@ -2,7 +2,7 @@
 
 Setup uses an existing project directory identified from the working context, defaulting to the local SiliconBoot clone. It does not create a workspace or scaffold a design project. Generated guidance and records live under that directory's `.siliconboot/`. Existing workspace directories and user sources remain intact.
 
-EDA tools, SRAM compilers, uv and isolated runtimes live under `~/tools`; PDKs live under `~/pdks`; public executable symlinks live under `~/bin`. Expand these paths against the invoking user's actual home directory, record their canonical identities and use them without sudo. SiliconBoot generates Markdown guidance and records, directories and native symbolic links. It does not generate activation scripts, wrappers, installer code or design-source examples. Render the [templates](../templates/README.md) with the existing project path and both installation roots.
+Managed EDA tools, SRAM compilers, uv and isolated runtimes live under `~/tools`; PDKs live under `~/pdks`; public executable symlinks live under `~/bin`. Matching macOS Homebrew tools remain at their provider-managed locations under the [Homebrew exception](installation.md#macos-check-homebrew-first), with receipts in the tool store. Expand home paths against the invoking user's actual home directory, record their canonical identities and use them without sudo. SiliconBoot generates Markdown guidance and records, directories and native symbolic links. It does not generate activation scripts, wrappers, installer code or design-source examples. Render the [templates](../templates/README.md) with the existing project path and both installation roots.
 
 ## Project locations
 
@@ -45,6 +45,7 @@ Use the home-directory roots described in [bootstrap](bootstrap.md). In these do
 | `~/tools/.siliconboot/guides/<guide-revision>/` | Read-only Markdown snapshot of the guidance, catalog and recipes used by the project. |
 | `~/tools/<component>/<install-key>/root/` | Complete persistent runtime installation with its upstream layout. |
 | `~/tools/<component>/<install-key>/receipt.md` | Installation identity, exact sources, dependencies and evidence. |
+| Recorded Homebrew prefix, keg/Caskroom and application paths | External macOS tools; generation views reference verified concrete runtime targets, with receipts in the tool store. |
 | `~/tools/.siliconboot/runtimes/python/<runtime-key>/root/` | Persistent uv-managed Python distribution and its owned executable directory. |
 | `~/tools/.siliconboot/runtimes/python/<runtime-key>/receipt.md` | Exact interpreter build, provider, asset digest, native ABI and references. |
 | `~/tools/.siliconboot/cache/uv/` | Shared uv dependency cache with recorded ownership; outside routine temporary cleanup. |
@@ -58,7 +59,7 @@ Use the home-directory roots described in [bootstrap](bootstrap.md). In these do
 
 Runtime source can remain part of a persistent installation. A Python component may need both source and its private interpreter environment; neither is disposable merely because a build has finished. Install at the final prefix and retain required upstream files. An external system installation remains at its provider's location and is recorded as external.
 
-Install uv under `~/tools/uv/`. Create each uv-managed environment inside its component's final runtime tree, recording its exact path. Derive a Python runtime key from the canonical build identity, including the exact interpreter implementation, version, provider build and asset digest. Register runtime receipts and dependency references using the same locks and leases as tool installations. These runtime dependencies do not add catalog scope records. Follow [Python environments](python-environments.md) to keep downloads, interpreter entrypoints and caches under `~/tools`.
+Install managed uv under `~/tools/uv/`, or record its external native Homebrew location on macOS when that provider matches the latest official release. Create each uv-managed environment inside its component's final runtime tree, recording its exact path. Derive a Python runtime key from the canonical build identity, including the exact interpreter implementation, version, provider build and asset digest. Register runtime receipts and dependency references using the same locks and leases as tool installations. These runtime dependencies do not add catalog scope records. Follow [Python environments](python-environments.md) to keep managed downloads, interpreter entrypoints and caches under `~/tools`, and record provider-managed runtime exceptions.
 
 ## Entrypoints and environment
 

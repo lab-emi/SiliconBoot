@@ -22,6 +22,16 @@ Guidance and catalog revision: [REVISION_AND_DIGEST]
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [COMPONENT_ID] | [PROVIDER_AND_CHANNEL] | [UTC_TIME] | [URL] | [UPSTREAM_LABEL] | [FULL_COMMIT_OR_NOT_APPLICABLE] | [VERSION] | [STATUS] |
 
+## macOS Homebrew comparison
+
+Complete one row for every selected tool, including uv, on macOS; record `not applicable` for other hosts. Use live official metadata even if Homebrew is absent. Distinguish an absent package from an unavailable lookup, and compare with the independent official discovery above.
+
+| Component | Checked at and Homebrew evidence | Formula/cask, tap and definition identity | Package upstream version and revision | Native host, features and dependency fit | Chosen provider and fallback reason |
+| --- | --- | --- | --- | --- | --- |
+| [COMPONENT_ID] | [UTC_TIME_AND_OFFICIAL_METADATA_URL_OR_LOOKUP_FAILURE] | [TOKEN_TAP_REVISION_OR_DIGEST_OR_ABSENT_OR_UNKNOWN] | [UPSTREAM_VERSION_AND_PACKAGE_REVISION_OR_UNKNOWN] | [COMPARISON_AND_RETENTION_LIMITS] | [HOMEBREW_OR_LATEST_NATIVE_FALLBACK_WITH_REASON] |
+
+Freeze bottle/asset identities and dependency inputs below. Homebrew's `latest` label, a HEAD build, or a name match alone cannot establish equality with the official selection.
+
 ## Source and asset identities
 
 | Component/input | Official repository or asset URL | Canonical redirect/final download URL | OS/architecture | Digest and origin | Signature result | Allowed host evidence |

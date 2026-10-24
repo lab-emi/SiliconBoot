@@ -9,7 +9,7 @@ This repository provides installation guidance. **No native installation or work
 | Ubuntu 24.04, x86_64 | Unverified; first native validation target | Confirm each upstream's requirements and execute component and workflow checks on this host. |
 | Linux, ARM64 | Unverified | Require native assets or native source builds and recompile architecture-dependent models. |
 | Other Linux distributions/releases | Unverified | Reassess package names, library ABI, compiler versions, and filesystem facilities. |
-| macOS, Apple silicon or Intel | Unverified | Confirm each component's native support, toolchain, frameworks, and model ABI; do not assume Linux recipes transfer. |
+| macOS, Apple silicon or Intel | Unverified | Check Homebrew first against each tool's latest official upstream release under [the macOS policy](installation.md#macos-check-homebrew-first). Confirm native support, toolchain, frameworks and model ABI; do not assume Linux recipes transfer or translated packages are native. |
 | Native Windows | Unverified and component-dependent | Use only upstream-supported native procedures; confirm the required symlink, locking, and atomic activation semantics. |
 | WSL2 | Separate Linux execution environment, unverified | Use only when the user explicitly selects it; record its Linux guest and Windows host context. |
 

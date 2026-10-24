@@ -13,6 +13,7 @@ Record type: Project
 | Explicit exclusions and reasons | [EXCLUSIONS_OR_NONE] |
 | Native target OS and architecture | [TARGET_PLATFORM] |
 | Default channel policy | [LATEST_OFFICIAL_OR_EXPLICIT_POLICY] |
+| macOS provider policy | Homebrew first when its native formula/cask matches the latest official release and requirements; record external paths and any latest-version fallback reason. Exact restores preserve locked inputs. |
 | Provider exceptions accepted by user | [EXCEPTIONS_OR_NONE] |
 | Selected PDK variants | [PDK_IDS] |
 | Standard-cell and model libraries | [LIBRARIES_AND_CORNERS] |

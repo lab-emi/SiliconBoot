@@ -24,6 +24,8 @@ Keep OS-managed Python packages unchanged. Do not share unrelated dependencies t
 
 ## Respect upstream runtime requirements
 
+On macOS, apply [Homebrew-first tool selection](installation.md#macos-check-homebrew-first) to uv and packaged Python tools. A matching Homebrew tool can include a provider-managed Python runtime; record its exact interpreter and dependency closure as an external runtime exception and let Homebrew maintain that package. Do not use uv to alter Homebrew's environment or copy it into `~/tools`. Independently created IC environments still use uv at their final managed locations. Reuse any external interpreter only with its recorded identity, compatible ABI and retention limits.
+
 An embedded interpreter, required Conda environment, Nix dependency closure or incompatible package installation feature can require an upstream-managed runtime. Preserve that runtime when official evidence establishes the requirement. Record the reason, upstream source, manager, interpreter, exact dependencies and verification limits. Do not silently replace it with uv or fall back from uv on an unexplained error. A routine upstream pip example alone does not require a different manager; check compatibility with uv's pip interface.
 
 Existing environments remain intact until a separately built candidate passes the relevant checks. Adopting uv is an installation or maintenance action; it does not authorize migrating a working environment during an ordinary run.

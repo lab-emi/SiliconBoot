@@ -12,6 +12,8 @@ Authoritative active map: [ACTIVE_MANIFEST_ABSOLUTE_PATH]
 
 This document describes environment setup in prose. Apply the values through the host's native session or process environment facilities. The active manifest is authoritative: confirm that this guide's generation and paths still match before starting new work. If an interrupted activation left this guide stale, reconcile it from the actual current manifest before using any rendered paths. No activation script or custom launcher is provided. All project-relative paths in this guide are relative to [PROJECT_ABSOLUTE_PATH], not this file's `.siliconboot/` directory. Setup creates no workspace or design scaffold.
 
+On macOS, install or upgrade tools using [Homebrew-first selection]([GUIDE_ABSOLUTE_PATH]/docs/installation.md#macos-check-homebrew-first) when its package matches the latest official upstream release and native requirements. Homebrew-managed tools are external exceptions to the tool root above. Record their actual prefix, concrete runtime targets, dependencies and retention limits in the manifest and receipts: [HOMEBREW_EXTERNAL_RECORD_REFERENCES_OR_NOT_APPLICABLE]. Recheck these targets before use; a fixed generation does not make external files immutable. Ordinary runs do not refresh packages or change providers.
+
 ## Begin a session or run
 
 1. Read `.siliconboot/project.md` and resolve `.siliconboot/current` to its absolute generation directory. Confirm that its manifest, lock, and validation identify the same verified or explicitly partial generation.
